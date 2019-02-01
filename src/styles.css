@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Header Styles */
+
+.header{
+    background-color: #9FA8DA;
+    color: white;
+    height: 40px !important;
+    font-weight: bold;
+}
+.spacer{
+    flex: 1 1 auto;
+}
+.links{
+    font-size: 13px;
+    word-spacing: 12px;
+    cursor: pointer;
+}
+.log{
+    color: white;
+    text-decoration: none;
+}
+
+/* Register components Styles */
+.register_div{
+    display: block;
+    background-color: #E8EAF6;
+    height: 500px;
+    width: 1000px;
+    margin: auto;
+}
+.doc_reg{
+    font-size: 13px;
+    color: blue !important;
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    .register_div{
+      width: 100%;
+    }
+    .caption{
+        font-size: 10px !important;
+    }
+    .mat-form-field-hide-placeholder{
+        font-size: 10px !important;
+    }
+  }
+
+  .border{
+      border-bottom: 1px solid black !important;
+  }
+  .caption{
+      font-size: 13px;
+      line-height: 4;
+  }
+  .row{
+      margin-left: 0px;
+      margin-right: 0px;
+  }
+  .mat-form-field-hide-placeholder{
+      font-size: 13px;
+  }
+  .input_field{
+      width: 100%;
+  }
