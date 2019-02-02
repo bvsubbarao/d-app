@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  isDoctor: Boolean = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  gender = [];
 
-  ngOnInit() {
+  constructor(private _formBuilder: FormBuilder) {
   }
 
+  ngOnInit() {
+    this.gender = ['Male', 'Female'];
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+
+  checkDoctorOrNot() {
+    return this.isDoctor = (this.isDoctor === true) ? false : true;
+  }
 }
