@@ -84,7 +84,84 @@ body {
 .input_field {
   width: 100%;
 }
-
-.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
-  background-color: #607D8B !important;
+.log_outer_card{
+  display: block;
+    margin: auto;
+    /* width: 60%; */
+    position: relative !important;
+    background-color: #DE243A;
+    height: 300px;
+    padding: 80px !important;
+}
+.log_inner_card{
+  position: absolute !important;
+    right: 10%;
+    width: 250px;
+    top: -42px;
+    height: 396px;
+    box-shadow: 1px 1px 21px grey !important
+}
+.log_head{
+  text-align: center;
+  color: #DE243A;
+  font-size: 18px;
+}
+.ring{
+  height: 50px;
+    width: 50px;
+    background-color: #DE243A;
+    display: block;
+    margin: auto;
+    border-radius: 50px;
+    box-shadow: -1px 0px 10px 9px lightgrey;
+}
+.log_btn{
+  width: 100%;
+  background-color: #DE243A;
+  color: white;
+}
+.sign_up{
+  width:100%;
+  padding: 0px !important;
+  margin-top: 12px !important;
+  color: #DE243A;
+}
+.forgot{
+  font-size: 13px;
+  color: #DE243A;
+  cursor: pointer;
+}
+.img_div{
+  width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: white;
+}
+.log_img{
+  width: 100px;
+    display: block;
+    margin: auto;
+    padding-top: 23px;
+}
+.main_div{
+  padding: 7% 10%;
+}
+@media only screen and (max-width: 425px) {
+  .main_div {
+    padding: 20% 10%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .main_div {
+    padding: 20% 10%;
+  }
+  .log_inner_card{
+    right:1%;
+  }
+}
+.log_img2{
+  width: 127px;
+    display: block;
+    margin: auto;
+    padding-top: 37px;
 }
