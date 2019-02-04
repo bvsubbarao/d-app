@@ -1,3 +1,4 @@
+<!--
 <div style="float:right">
   <p style="font-size:12px;margin-right: 22px;">
     <ng-container *ngIf="isDoctor; then user;else doctor"></ng-container>
@@ -6,160 +7,91 @@
     <a class="doc_reg" (click)="checkDoctorOrNot()">
       Register Here </a></p>
 </div>
+-->
+
 <!-- -->
 <div style="clear:both;"></div>
 <!--
 User Register Form
 -->
-<div class="container" *ngIf="!isDoctor">
-
-  <div class="border"></div>
-
+<div *ngIf="!isDoctor" class="container user">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Name:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter full name">
-          </mat-form-field>
-        </div>
-      </div>
+    <div class="col-lg-8 col-md-6 userregimg">
+      <img src="https://labs.practo.com/master-health-checkup_files/family.png" alt="bg"
+           style="width: 70%">
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Email:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter Email">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class=" col-lg-4 col-md-6 userreg">
+      <form [formGroup]="userFormGroup" (ngSubmit)="getUserRegisterDetails()">
 
-  <div class="border"></div>
+        <!-- User Name-->
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="userName" required>
+        </mat-form-field>
+        <br>
+        <!-- User email-->
+        <mat-form-field>
+          <input matInput placeholder="Email Id" formControlName="userEmail" required type="email">
+        </mat-form-field>
+        <br>
 
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Password:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter Password">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Confirm Password:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter Confirm Password">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- Password -->
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" formControlName="userPassword" required>
+        </mat-form-field>
+        <br>
 
-  <div class="border"></div>
+        <!-- Mobile Number -->
+        <mat-form-field>
+          <input matInput placeholder="Mobile Number" formControlName="userMobileNumber" required>
+        </mat-form-field>
+        <br>
 
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          City:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter City">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Pincode:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter Pincode">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- Gender -->
+        <mat-form-field>
+          <mat-select placeholder="Gender" formControlName="userGender">
+            <mat-option *ngFor="let data of gender" [value]="data">
+              {{data}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
 
-  <div class="border"></div>
+        <!-- Dob -->
+        <!--<mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br>-->
 
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Mobile:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter mobile number">
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          DOB:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- City -->
+        <mat-form-field>
+          <input matInput placeholder="City" formControlName="userCity" required>
+        </mat-form-field>
+        <br>
+        <!-- Pincode -->
+        <mat-form-field>
+          <input matInput placeholder="Pincode" formControlName="userPincode" required>
+        </mat-form-field>
+        <br>
+        <button [disabled]="userFormGroup.invalid" class="btn" mat-raised-button>Submit</button>
+        {{"errors "+userFormGroup.errors}}
+      </form>
+      <br>
 
-  <div class="border"></div>
+      <div>
 
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 caption">
-          Mobile:
-        </div>
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput placeholder="Enter mobile number">
-          </mat-form-field>
-        </div>
+        <ng-container *ngIf="isDoctor; then user;else doctor"></ng-container>
+        <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
+        <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
+        <span>
+        <a class="doc_reg" (click)="checkDoctorOrNot()">
+          Register Here </a>
+      </span>
+
       </div>
+
     </div>
-    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 caption">
-          DOB:
-        </div>
-        <div class="col-lg-8 col-md-4 col-sm-6 col-xs-6">
-          <mat-form-field class="input_field">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-      </div>
-    </div> -->
   </div>
 
 </div>
@@ -167,57 +99,60 @@ User Register Form
 <!--
 Doctor Register Form
 -->
-<div class="row">
-  <div class="col-lg-8 col-md-6"></div>
+<div class="row doctor" *ngIf="isDoctor">
+  <div class="col-lg-8 col-md-6">
+    <img id="doc-reg-img" src="https://labs.practo.com/master-health-checkup_files/family.png" alt="bg"
+         style="width: 50%">
+  </div>
   <div class="col-lg-4 col-md-6">
-    <div *ngIf="isDoctor">
+    <div>
       <mat-vertical-stepper [linear]="isLinear" #stepper>
         <!-- Stepper 1-->
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="docPersonalFormGroup">
+          <form [formGroup]="docPersonalFormGroup" (ngSubmit)="getDocRegisterDetails()">
             <ng-template matStepLabel>Fill out your Personal Details</ng-template>
             <!-- Name -->
             <mat-form-field>
-              <input matInput placeholder="Full Name" formControlName="firstCtrl" required>
+              <input matInput placeholder="Name" formControlName="docName" required>
             </mat-form-field>
             <br>
             <!-- Email -->
             <mat-form-field>
-              <input matInput placeholder="Email Id" formControlName="firstCtrl" required>
+              <input matInput placeholder="Email Id" formControlName="docEmail" required>
             </mat-form-field>
 
             <br>
             <!-- Password -->
             <mat-form-field>
-              <input matInput placeholder="Password" formControlName="firstCtrl" required>
+              <input matInput placeholder="Password" formControlName="docPassword" required>
             </mat-form-field>
             <br>
             <!-- Gender -->
             <mat-form-field>
-              <mat-select placeholder="Gender">
+              <mat-select formControlName="docGender" placeholder="Gender">
                 <mat-option *ngFor="let data of gender" [value]="data">
                   {{data}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-raised-button matStepperNext [disabled]="docPersonalFormGroup.invalid">Next</button>
             </div>
           </form>
 
         </mat-step>
         <!-- Stepper 2-->
-        <mat-step [stepControl]="secondFormGroup">
-          <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="docContactFormGroup">
+          <form [formGroup]="docContactFormGroup" (ngSubmit)="getDocRegisterDetails()">
             <ng-template matStepLabel>Fill out your Contact Details</ng-template>
             <!-- Mobile -->
             <mat-form-field>
-              <input matInput placeholder="Mobile Number" formControlName="firstCtrl" required>
+              <input matInput placeholder="Mobile Number" formControlName="docMobileNumber" required>
             </mat-form-field>
             <br>
             <!-- State -->
             <mat-form-field>
-              <mat-select placeholder="State">
+              <mat-select placeholder="State" formControlName="docState">
                 <mat-option *ngFor="let data of gender" [value]="data">
                   {{data}}
                 </mat-option>
@@ -226,58 +161,68 @@ Doctor Register Form
             <br>
             <!-- City -->
             <mat-form-field>
-              <mat-select placeholder="City">
+              <mat-select placeholder="City" formControlName="docCity">
                 <mat-option *ngFor="let data of gender" [value]="data">
                   {{data}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <br>
-            <!-- Mobile -->
-            <mat-form-field>
-              <input matInput placeholder="Mobile Number" formControlName="firstCtrl" required>
-            </mat-form-field>
+
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-raised-button matStepperNext [disabled]="docContactFormGroup.invalid">Next</button>
             </div>
           </form>
         </mat-step>
         <!-- Stepper 3-->
         <mat-step>
-          <form [formGroup]="firstFormGroup">
+          <form [formGroup]="docWorkFormGroup" (ngSubmit)="getDocRegisterDetails()">
             <ng-template matStepLabel>Fill out your Work Details</ng-template>
             <!-- Works at-->
             <mat-form-field>
-              <input matInput placeholder="Current working at" formControlName="firstCtrl" required>
+              <input matInput placeholder="Current working at" formControlName="docWorksAt" required>
             </mat-form-field>
             <br>
             <!-- License number -->
             <mat-form-field>
-              <input matInput placeholder="License number" formControlName="firstCtrl" required>
+              <input matInput placeholder="License number" formControlName="docLicenseNumber" required>
             </mat-form-field>
 
             <br>
             <!-- Qualification -->
             <mat-form-field>
-              <input matInput placeholder="Qualification" formControlName="firstCtrl" required>
+              <input matInput placeholder="Qualification" formControlName="docQualification" required>
             </mat-form-field>
             <br>
             <!-- Specialization -->
             <mat-form-field>
-              <input matInput placeholder="Specialization" formControlName="firstCtrl" required>
+              <input matInput placeholder="Specialization" formControlName="docSpecialization" required>
             </mat-form-field>
             <br>
             <!-- Fee -->
             <mat-form-field>
-              <input matInput placeholder="Fee Charged" formControlName="firstCtrl" required>
+              <input matInput placeholder="Fee Charged" formControlName="docFee" required>
             </mat-form-field>
             <br>
             <div>
-              <button mat-button matStepperNext>Submit</button>
+              <button mat-raised-button matStepperNext [disabled]="docWorkFormGroup.invalid">Submit</button>
             </div>
           </form>
         </mat-step>
       </mat-vertical-stepper>
+
+      <div>
+
+        <ng-container *ngIf="isDoctor; then user;else doctor"></ng-container>
+        <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
+        <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
+        <span>
+        <a class="doc_reg" (click)="checkDoctorOrNot()">
+          Register Here </a>
+      </span>
+
+      </div>
+
     </div>
 
   </div>

@@ -13,9 +13,9 @@ body {
 /* Header Styles */
 
 .header {
-  background-color: #9FA8DA;
+  background-color: #607D8B;
   color: white;
-  height: 40px !important;
+  height: 50px !important;
   font-weight: bold;
 }
 
@@ -45,7 +45,7 @@ body {
 
 .doc_reg {
   font-size: 13px;
-  color: blue !important;
+  color: #607D8B !important;
   cursor: pointer;
 }
 
@@ -83,4 +83,8 @@ body {
 
 .input_field {
   width: 100%;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #607D8B !important;
 }
