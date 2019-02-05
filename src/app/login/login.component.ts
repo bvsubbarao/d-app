@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorServiceService } from '../doctor-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  isDoctor:boolean = false;
+  loginObj: any = {};
 
-  constructor() { }
+  isDoctor: boolean = false;
+
+  constructor(private service: DoctorServiceService, private router: Router) { }
 
   ngOnInit() {
   }
 
   checkDoctorOrNot() {
     return this.isDoctor = (this.isDoctor === true) ? false : true;
+  }
+
+  userLogin() {
+    let obj: any = {};
+    obj.email = this.loginObj.email;
+    obj.password = this.loginObj.password;
+    obj.role = 'user';
+    // console.log('---------->')
+    this.service.login(obj).subscribe(res => {
+      console.log('--->', res);
+    })
+  }
+  doctorLogin() {
+    let obj: any = {};
+    obj.email = this.loginObj.docEmail;
+    obj.password = this.loginObj.docPassword;
+    obj.role = 'doctor';
+    this.service.login(obj).subscribe(res => {
+      console.log('--->', res);
+      if(res){
+        this.router.navigate(['/doctorpage']);
+      }
+    })
   }
 
 }

@@ -10,13 +10,19 @@ import {HeaderComponent} from './header/header.component';
 import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DoctorServiceService } from './doctor-service.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DoctorpageComponent } from './doctorpage/doctorpage.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    DoctorpageComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +31,11 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatTabsModule
   ],
-  providers: [],
+  providers: [DoctorServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,19 @@
+.slot-div{
+    background-color: #43A047;
+    padding: 12px;
+    border: 1px solid lightgrey;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 10px;
+}
+.slot-maindiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+.activediv{
+    background-color: lightgrey !important;
+}
+.inactivediv{
+    background-color: #43A047 !important;
+}

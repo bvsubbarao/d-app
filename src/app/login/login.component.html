@@ -8,10 +8,10 @@
   </p>
 </div>
 
-<div class="main_div" *ngIf = "isDoctor">
+<div class="main_div" *ngIf = "!isDoctor">
   <mat-card class="log_outer_card">
     <div class="img_div">
-      <img src="assets\img1.png" class="log_img">
+      <img src="assets\img2.png" class="log_img">
     </div>
 
     <mat-card class="log_inner_card">
@@ -20,18 +20,18 @@
 
       <div align="center">
         <mat-form-field style="width:100%">
-          <input matInput placeholder="Enter Your Email">
+          <input matInput placeholder="Enter Your Email" [(ngModel)] = "loginObj.email">
         </mat-form-field>
       </div>
 
       <div align="center">
         <mat-form-field style="width:100%">
-          <input matInput placeholder="Enter Password">
+          <input matInput placeholder="Enter Password" [(ngModel)] = "loginObj.password">
         </mat-form-field>
       </div>
 
       <div align="center">
-        <button class="log_btn" mat-raised-button> LOGIN </button>
+        <button class="log_btn" mat-raised-button (click) = "userLogin()"> LOGIN </button>
       </div>
 
       <div align="center">
@@ -46,10 +46,10 @@
   </mat-card>
 </div>
 
-<div class="main_div" *ngIf = "!isDoctor">
+<div class="main_div" *ngIf = "isDoctor">
     <mat-card class="log_outer_card">
       <div class="img_div">
-        <img src="assets\img2.png" class="log_img2">
+        <img src="assets\img1.png" class="log_img2">
       </div>
   
       <mat-card class="log_inner_card">
@@ -58,18 +58,18 @@
   
         <div align="center">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter Your Email">
+            <input matInput placeholder="Enter Your Email" [(ngModel)] = "loginObj.docEmail">
           </mat-form-field>
         </div>
   
         <div align="center">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter Password">
+            <input matInput placeholder="Enter Password" [(ngModel)] = "loginObj.docPassword">
           </mat-form-field>
         </div>
   
         <div align="center">
-          <button class="log_btn" mat-raised-button> LOGIN </button>
+          <button class="log_btn" mat-raised-button (click) = "doctorLogin()"> LOGIN </button>
         </div>
   
         <div align="center">

@@ -1,0 +1,111 @@
+<div class="container">
+  <!-- <mat-card> -->
+  <button mat-raised-button (click)="applcant()"> List of Applicants </button>
+  <button mat-raised-button style="margin-left:25px;" (click)="available()"> Availability </button>
+
+  <div *ngIf="listOfApplicant">
+    <mat-tab-group>
+      <mat-tab label="Confirmed">
+        <div class="row">
+          <div class="col-lg-6">
+            <mat-card style="margin:5px;">
+              <div class="row">
+                <div class="col-lg-6"> Patient Name </div>
+                <div class="col-lg-6"> :Subbarao </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Consult Type </div>
+                <div class="col-lg-6"> :Cordialogist </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Health Issue </div>
+                <div class="col-lg-6"> :Chest Pain </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Booking Id </div>
+                <div class="col-lg-6"> :IB12373C </div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="col-lg-6">
+            <mat-card style="margin:5px;">
+              <div class="row">
+                <div class="col-lg-6"> Patient Name </div>
+                <div class="col-lg-6"> :Subbarao </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Consult Type </div>
+                <div class="col-lg-6"> :Cordialogist </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Health Issue </div>
+                <div class="col-lg-6"> :Chest Pain </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Booking Id </div>
+                <div class="col-lg-6"> :IB12373C </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Pending">
+        <div class="row">
+          <div class="col-lg-6">
+            <mat-card style="margin:5px;height: 145px;">
+              <div class="row">
+                <div class="col-lg-6"> Patient Name </div>
+                <div class="col-lg-6"> :Subbarao </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Consult Type </div>
+                <div class="col-lg-6"> :Cordialogist </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Health Issue </div>
+                <div class="col-lg-6"> :Chest Pain </div>
+              </div>
+              <div class="confirm_btn">
+                <button mat-raised-button color="primary"> Confirm </button>
+              </div>
+            </mat-card>
+          </div>
+          <div class="col-lg-6">
+            <mat-card style="margin:5px;height: 145px;">
+              <div class="row">
+                <div class="col-lg-6"> Patient Name </div>
+                <div class="col-lg-6"> :Subbarao </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Consult Type </div>
+                <div class="col-lg-6"> :Cordialogist </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"> Health Issue </div>
+                <div class="col-lg-6"> :Chest Pain </div>
+              </div>
+
+              <div class="confirm_btn">
+                <button mat-raised-button color="primary"> Confirm </button>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <!-- </mat-card> -->
+  </div>
+
+  <div *ngIf="Availability">
+    <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngMoels]) = "docObj.data" #tabGroup>
+      <mat-tab *ngFor = "let data of array.dates" label= {{data}}> 
+        <div class="slot-maindiv">
+            <button *ngFor="let slot of timeSlots" class="slot-div"  (click)="bookSlot(slot)" [ngClass]="{'activediv':slot.status ===true,'inactivediv':slot.status ===false}">
+                {{slot.timeslot}}
+            </button> 
+        </div> 
+      </mat-tab>
+    </mat-tab-group>
+    <button (click) = "saveDoctorSlots()"> Save </button>
+  </div>
+</div>

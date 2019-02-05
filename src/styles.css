@@ -138,10 +138,10 @@ body {
     background-color: white;
 }
 .log_img{
-  width: 100px;
+  width: 127px;
     display: block;
     margin: auto;
-    padding-top: 23px;
+    padding-top: 37px;
 }
 .main_div{
   padding: 7% 10%;
@@ -160,8 +160,18 @@ body {
   }
 }
 .log_img2{
-  width: 127px;
+    width: 100px;
     display: block;
     margin: auto;
-    padding-top: 37px;
+    padding-top: 23px;
+}
+.confirm_btn{
+  float: right;
+    margin-right: 100px;
+    margin-top: 14px;
+}
+.slot_btn{
+  border: none;
+  background-color: #43A047 !important;
+  cursor: pointer;
 }
