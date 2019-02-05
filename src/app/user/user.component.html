@@ -1,0 +1,27 @@
+<div class="container user-home">
+  <p>user works</p>
+
+  <div>
+    <!-- Health issue-->
+    <textarea class="form-control" [(ngModel)]="requestObject.issue" placeholder="Health Issue"></textarea>
+    <br>
+
+    <!-- Specialist data-->
+    <mat-select placeholder="Specialist" class="form-control" [(ngModel)]="requestObject.specialistId"
+                (ngModelChange)="onSubmitPatientForm()">
+      <mat-option *ngFor="let data of specialistList" [value]="data._id">
+        {{data.name}}
+      </mat-option>
+    </mat-select>
+    <br>
+    <!-- hospital data -->
+    <mat-select placeholder="Hospitals" class="form-control" [(ngModel)]="requestObject.hospitalList">
+      <mat-option *ngFor="let data of hospitalList" value="data._id">
+        {{data?.name}}
+      </mat-option>
+    </mat-select>
+    <br>
+
+  </div>
+
+</div>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DoctorServiceService } from '../doctor-service.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {DoctorServiceService} from '../doctor-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +11,10 @@ export class LoginComponent implements OnInit {
 
   loginObj: any = {};
 
-  isDoctor: boolean = false;
+  isDoctor = false;
 
-  constructor(private service: DoctorServiceService, private router: Router) { }
+  constructor(private service: DoctorServiceService, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -23,26 +24,30 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
-    let obj: any = {};
+    const obj: any = {};
     obj.email = this.loginObj.email;
     obj.password = this.loginObj.password;
     obj.role = 'user';
     // console.log('---------->')
     this.service.login(obj).subscribe(res => {
       console.log('--->', res);
-    })
+      if (res) {
+        this.router.navigate(['/user']);
+      }
+    });
   }
+
   doctorLogin() {
-    let obj: any = {};
+    const obj: any = {};
     obj.email = this.loginObj.docEmail;
     obj.password = this.loginObj.docPassword;
     obj.role = 'doctor';
     this.service.login(obj).subscribe(res => {
       console.log('--->', res);
-      if(res){
+      if (res) {
         this.router.navigate(['/doctorpage']);
       }
-    })
+    });
   }
 
 }

@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   gender = [];
 
-  stateObj:any = {};
+  stateObj: any = {};
 
   constructor(private _formBuilder: FormBuilder, private service: DoctorServiceService, private router: Router) {
   }
