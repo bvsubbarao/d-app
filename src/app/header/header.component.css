@@ -1,4 +1,14 @@
-.log{
-  text-decoration:none ;
-  color: white;
+.logout_btn{
+    height: 35px !important;
+    line-height: 35px !important;
+    outline: none;
+}
+/deep/.cdk-overlay-connected-position-bounding-box{
+    top: 50px !important;
+    right: 4px !important;
+}
+.logout_btn:hover{
+    background-color: blue;
+    color: white;
+    border-left: 3px solid red;
 }

@@ -1,10 +1,25 @@
-<mat-toolbar class="header">
+<!-- <mat-toolbar class="header">
   <div>
     DABS
   </div>
-   <span class="spacer"></span>
-  <div class="links">
-    <a class="log" routerLink = "/login"> Login </a>
-    <a routerLink = "/register" class="log"> Register </a>
+  <span class="spacer"></span>
+
+</mat-toolbar> -->
+
+<mat-toolbar class="header" >
+  <div>
+    DABS
+  </div>
+  <span class="spacer"></span>
+  <div class="links" *ngIf="flagObj.role === null || flagObj.role === undefined">
+    <a class="log" routerLink="/login"> Login </a>
+    <a routerLink="/register" class="log"> Register </a>
+  </div>
+  <div class="links" *ngIf="(flagObj.role === 'doctor' || flagObj.role === 'user')">
+    <img src="assets/user.png" style="width:34px;" [matMenuTriggerFor]="menu">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="logout_btn" (click) = "opendialog()">Profile</button>
+      <button mat-menu-item class="logout_btn" (click)="logout()">Log out</button>
+    </mat-menu>
   </div>
 </mat-toolbar>

@@ -33,6 +33,10 @@ body {
   color: white;
   text-decoration: none;
 }
+.log:hover{
+  color: white;
+  text-decoration: none;
+}
 
 /* Register components Styles */
 .register_div {
@@ -45,8 +49,10 @@ body {
 
 .doc_reg {
   font-size: 13px;
-  color: #607D8B !important;
+  /* color: #607D8B !important; */
   cursor: pointer;
+  color: white;
+  font-size: 15px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -174,4 +180,22 @@ body {
   border: none;
   background-color: #43A047 !important;
   cursor: pointer;
+}
+.doc_page_btn{
+  background-color: #607D8B;
+    color: white;
+}
+.profile_inp{
+  width: 100%;
+}
+.caption{
+  line-height: 3;
+}
+.close{
+  border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding: 1px 6px;
+    font-weight: 400;
 }

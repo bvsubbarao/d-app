@@ -1,7 +1,9 @@
 <div class="container">
   <!-- <mat-card> -->
-  <button mat-raised-button (click)="applcant()"> List of Applicants </button>
-  <button mat-raised-button style="margin-left:25px;" (click)="available()"> Availability </button>
+  <button mat-raised-button (click)="available('applicant')" class="doc_page_btn" [ngClass]="{'doc_page_btn': selectObj.key === 'applicant'}">
+    List of Applicants </button>
+  <button mat-raised-button style="margin-left:25px;" (click)="available('available')" class="doc_page_btn" [ngClass]="{'doc_page_btn': selectObj.key === 'available'}">
+    Availability </button>
 
   <div *ngIf="listOfApplicant">
     <mat-tab-group>
@@ -97,15 +99,17 @@
   </div>
 
   <div *ngIf="Availability">
-    <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngMoels]) = "docObj.data" #tabGroup>
-      <mat-tab *ngFor = "let data of array.dates" label= {{data}}> 
+    <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngMoels])="docObj.data" #tabGroup>
+      <mat-tab *ngFor="let data of array.dates" label={{data}}>
         <div class="slot-maindiv">
-            <button *ngFor="let slot of timeSlots" class="slot-div"  (click)="bookSlot(slot)" [ngClass]="{'activediv':slot.status ===true,'inactivediv':slot.status ===false}">
-                {{slot.timeslot}}
-            </button> 
-        </div> 
+          <button *ngFor="let slot of timeSlots" class="slot-div" (click)="bookSlot(slot)" [ngClass]="{'activediv':slot.status ===true,'inactivediv':slot.status ===false}">
+            {{slot.timeslot}}
+          </button>
+        </div>
       </mat-tab>
     </mat-tab-group>
-    <button (click) = "saveDoctorSlots()"> Save </button>
+    <div align = "center">
+      <button mat-raised-button (click)="saveDoctorSlots()" color = "primary"> Save </button>
+    </div>
   </div>
 </div>

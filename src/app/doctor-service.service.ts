@@ -51,5 +51,23 @@ export class DoctorServiceService {
     };
     return this.httpRef.get(this.baseUrl + '/api/availability/getAvailableslots', httpOptions);
   }
+  getProfileData() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.get(this.baseUrl + '/api/users/getprofile/user', httpOptions);
+  }
+  updateprofiledetails(data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.post(this.baseUrl + '/api/users/updateprofile', data, httpOptions);
+  }
 
 }

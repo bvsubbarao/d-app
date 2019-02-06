@@ -13,6 +13,8 @@ import {LoginComponent} from './login/login.component';
 import {DoctorServiceService} from './doctor-service.service';
 import {DoctorpageComponent} from './doctorpage/doctorpage.component';
 import {UserComponent} from './user/user.component';
+import { ProfiledetailsComponent } from './profiledetails/profiledetails.component';
+import { DatashareService } from './datashare.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import {UserComponent} from './user/user.component';
     LoginComponent,
     DoctorpageComponent,
     UserComponent
+    ProfiledetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +35,9 @@ import {UserComponent} from './user/user.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DoctorServiceService],
-  bootstrap: [AppComponent]
+  providers: [DoctorServiceService, DatashareService],
+  bootstrap: [AppComponent],
+  entryComponents: [ProfiledetailsComponent]
 })
 export class AppModule {
 }

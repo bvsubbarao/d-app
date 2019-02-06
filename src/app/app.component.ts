@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'doctorAppointment';
+  constructor(public router:Router){
+    if(localStorage.getItem('token') ===null || localStorage.getItem('token') === undefined){
+      this.router.navigate(['']);
+      localStorage.clear();
+    }
+  }
 }

@@ -17,7 +17,7 @@ User Register Form
 <div *ngIf="!isDoctor" class="container user">
   <div class="row">
     <div class="col-lg-8 col-md-6 userregimg">
-      <img src="https://labs.practo.com/master-health-checkup_files/family.png" alt="bg" style="width: 70%">
+      <img src="assets\doctor appoint.png" alt="bg">
     </div>
     <div class=" col-lg-4 col-md-6 userreg">
       <form [formGroup]="userFormGroup" (ngSubmit)="userRegister()">
@@ -169,11 +169,12 @@ Doctor Register Form
         </mat-step>
         <!-- Stepper 2-->
         <mat-step [stepControl]="docContactFormGroup">
-          <form [formGroup]="docContactFormGroup" >
+          <form [formGroup]="docContactFormGroup">
             <ng-template matStepLabel>Fill out your Contact Details</ng-template>
             <!-- Mobile -->
             <mat-form-field>
-              <input matInput placeholder="Mobile Number" formControlName="docMobileNumber" required [(ngModel)]="stateObj.docMobileNumber" [disabled]="docPersonalFormGroup.invalid">
+              <input matInput placeholder="Mobile Number" formControlName="docMobileNumber" required [(ngModel)]="stateObj.docMobileNumber"
+                [disabled]="docPersonalFormGroup.invalid">
             </mat-form-field>
             <br>
             <!-- State -->
@@ -203,28 +204,15 @@ Doctor Register Form
         </mat-step>
         <!-- Stepper 3-->
         <mat-step>
-          <form [formGroup]="docWorkFormGroup" >
+          <form [formGroup]="docWorkFormGroup">
             <ng-template matStepLabel>Fill out your Work Details</ng-template>
-            <!-- Works at-->
-            <mat-form-field>
-              <mat-select placeholder="WorkAt" formControlName="docWorksAt" [(ngModel)]="stateObj.docWorksAtId">
-                <mat-option *ngFor="let data of stateObj.hospitals" [value]="data._id">
-                  {{data.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-            <!-- License number -->
-            <mat-form-field>
-              <input matInput placeholder="License number" formControlName="docLicenseNumber" required [(ngModel)]="stateObj.docLicenseNumber">
-            </mat-form-field>
 
-            <br>
             <!-- Qualification -->
             <mat-form-field>
               <input matInput placeholder="Qualification" formControlName="docQualification" required [(ngModel)]="stateObj.docQualification">
             </mat-form-field>
             <br>
+
             <!-- Specialization -->
             <mat-form-field>
               <mat-select placeholder="Specialization" formControlName="docSpecialization" [(ngModel)]="stateObj.specializationId">
@@ -234,13 +222,31 @@ Doctor Register Form
               </mat-select>
             </mat-form-field>
             <br>
+
+            <!-- License number -->
+            <mat-form-field>
+              <input matInput placeholder="License number" formControlName="docLicenseNumber" required [(ngModel)]="stateObj.docLicenseNumber">
+            </mat-form-field>
+            <br>
+
+            <!-- Works at-->
+            <mat-form-field>
+              <mat-select placeholder="WorkAt" formControlName="docWorksAt" [(ngModel)]="stateObj.docWorksAtId">
+                <mat-option *ngFor="let data of stateObj.hospitals" [value]="data._id">
+                  {{data.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+
+
             <!-- Fee -->
             <mat-form-field>
-              <input matInput placeholder="Fee Charged" formControlName="docFee" required [(ngModel)] = "stateObj.docFee">
+              <input matInput placeholder="Fee Charged" formControlName="docFee" required [(ngModel)]="stateObj.docFee">
             </mat-form-field>
             <br>
             <div>
-              <button mat-raised-button matStepperNext [disabled]="docWorkFormGroup.invalid" (click) = "doctorRegister()">Submit</button>
+              <button mat-raised-button matStepperNext [disabled]="docWorkFormGroup.invalid" (click)="doctorRegister()">Submit</button>
             </div>
           </form>
         </mat-step>

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {DoctorServiceService} from '../doctor-service.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { DoctorServiceService } from '../doctor-service.service';
+import { Router } from '@angular/router';
+import { DatashareService } from '../datashare.service';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,7 @@ export class LoginComponent implements OnInit {
 
   isDoctor = false;
 
-  constructor(private service: DoctorServiceService, private router: Router) {
-  }
+  constructor(private service: DoctorServiceService, private router: Router, private datashare:DatashareService) { }
 
   ngOnInit() {
   }
@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
       console.log('--->', res);
       if (res) {
         this.router.navigate(['/doctorpage']);
+        this.datashare.sendRole(res['role']);
+        localStorage.setItem('role', res['role']);
+        localStorage.setItem('token', res['token']);
+        console.log('<--->', localStorage.getItem('role'));
       }
     });
   }

@@ -1,14 +1,4 @@
-<div style="float:right">
-  <p style="font-size:12px;margin-right: 22px;">
-    <ng-container *ngIf="isDoctor; then user;else doctor"></ng-container>
-    <ng-template #user>Are you not a Doctor ?</ng-template>
-    <ng-template #doctor>Are you a Doctor ?</ng-template>
-    <a class="doc_reg" (click)="checkDoctorOrNot()">
-      Login Here </a>
-  </p>
-</div>
-
-<div class="main_div" *ngIf = "!isDoctor">
+<div class="main_div" *ngIf="!isDoctor">
   <mat-card class="log_outer_card">
     <div class="img_div">
       <img src="assets\img2.png" class="log_img">
@@ -20,7 +10,7 @@
 
       <div align="center">
         <mat-form-field style="width:100%">
-          <input matInput placeholder="Enter Your Email" [(ngModel)] = "loginObj.email">
+          <input matInput placeholder="Enter Your Email" [(ngModel)]="loginObj.email">
         </mat-form-field>
       </div>
 
@@ -31,7 +21,7 @@
       </div>
 
       <div align="center">
-        <button class="log_btn" mat-raised-button (click) = "userLogin()"> LOGIN </button>
+        <button class="log_btn" mat-raised-button (click)="userLogin()"> LOGIN </button>
       </div>
 
       <div align="center">
@@ -43,13 +33,34 @@
       </div>
 
     </mat-card>
+
+    <div style="color:white;">
+      <p style="font-size:12px;margin-right: 22px;">
+        <ng-container *ngIf="isDoctor; then user;else doctor"></ng-container>
+        <ng-template #user>Are you not a Doctor ?</ng-template>
+        <ng-template #doctor>Are you a Doctor ?</ng-template>
+        <a class="doc_reg" (click)="checkDoctorOrNot()">
+          Login Here </a>
+      </p>
+    </div>
+
   </mat-card>
 </div>
 
-<div class="main_div" *ngIf = "isDoctor">
-    <mat-card class="log_outer_card">
-      <div class="img_div">
-        <img src="assets\img1.png" class="log_img2">
+<div class="main_div" *ngIf="isDoctor">
+  <mat-card class="log_outer_card">
+    <div class="img_div">
+      <img src="assets\img1.png" class="log_img2">
+    </div>
+
+    <mat-card class="log_inner_card">
+      <p class="log_head"> Log In </p>
+      <div class="ring"></div>
+
+      <div align="center">
+        <mat-form-field style="width:100%">
+          <input matInput placeholder="Enter Your Email" [(ngModel)]="loginObj.docEmail">
+        </mat-form-field>
       </div>
   
       <mat-card class="log_inner_card">
@@ -64,7 +75,7 @@
   
         <div align="center">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="Enter Password" type="password" [(ngModel)] = "loginObj.docPassword">
+            <input matInput placeholder="Enter Password" [(ngModel)] = "loginObj.docPassword">
           </mat-form-field>
         </div>
   
