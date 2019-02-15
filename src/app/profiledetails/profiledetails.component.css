@@ -1,5 +1,13 @@
 .profile{
     text-align: center;
-    font-size: 26px;
+    font-size: 18px;
     font-weight: 200;
+}
+.caption{
+    font-weight: bold;
+    color: #7B9BA3;
+}
+.profile_inp{
+    font-size: 14px;
+    color: #607D8B;
 }

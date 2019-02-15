@@ -1,27 +1,83 @@
 <div class="container user-home">
-  <p>user works</p>
+  <!-- <p>user works</p> -->
 
   <div>
     <!-- Health issue-->
     <textarea class="form-control" [(ngModel)]="requestObject.issue" placeholder="Health Issue"></textarea>
+    <!-- <br> -->
+
+
+    <div class="row user_search_hospitals">
+      <div class="col-lg-5 col-md-5 ip-fields">
+        <!-- Specialist data-->
+        <mat-select placeholder="Specialist" class="form-control" [(ngModel)]="requestObject.specialistId"
+          (selectionChange)="onSubmitPatientForm(requestObject.specialistId)">
+          <mat-option *ngFor="let data of specialistList" [value]="data._id">
+            {{data.name}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="col-lg-5 col-md-5 ip-fields">
+        <!-- hospital data -->
+        <mat-select placeholder="Hospitals" class="form-control" [(ngModel)]="requestObject.hospitalList">
+          <mat-option *ngFor="let data of requestObject.hospitals" [value]="data._id">
+            {{data.name}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div class="col-lg-2 col-md-2 ip-fields">
+        <!-- hospital data -->
+        <button mat-raised-button style="background-color:#607D8B;;color: white;height: 33px;" (click)="search(requestObject.specialistId, requestObject.hospitalList)">
+          Search </button></div>
+
+    </div>
+
+
     <br>
 
-    <!-- Specialist data-->
-    <mat-select placeholder="Specialist" class="form-control" [(ngModel)]="requestObject.specialistId"
-                (ngModelChange)="onSubmitPatientForm()">
-      <mat-option *ngFor="let data of specialistList" [value]="data._id">
-        {{data.name}}
-      </mat-option>
-    </mat-select>
-    <br>
-    <!-- hospital data -->
-    <mat-select placeholder="Hospitals" class="form-control" [(ngModel)]="requestObject.hospitalList">
-      <mat-option *ngFor="let data of hospitalList" value="data._id">
-        {{data?.name}}
-      </mat-option>
-    </mat-select>
-    <br>
+  </div>
 
+  <div *ngIf = "doctorList">
+    <div class="row">
+      <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let doc of requestObject.doctorlist">
+        <mat-card class="card-main">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 card-div-padding">
+              <div> Name : <span> {{doc.name}} </span> <span>({{doc.qualification}})</span></div>
+              <div> Age : <span> {{doc.dob}} </span></div>
+              <div> Specialist In : <span> {{doc.specialistid['name']}} </span></div>
+              <div> Organization Type : <span> {{doc.specialistid['organizationtype']}} </span></div>
+              <div> City : <span> {{doc.cityid['name']}} </span></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 card-div-padding">
+              <div> Fee : <span> {{doc.fee}} </span></div>
+              <div class="avail_btn"> <button mat-raised-button class="btn" (click)="getavailTimes(doc)">
+                  Availability </button></div>
+            </div>
+            <div class="col-lg-12 card-div-bottom">
+              <div style="display:flex;justify-content: space-between;">
+                <p class="card-footer">{{doc.workat.name}}</p>
+                <!-- <p class="card-footer loc-icon" matTooltip= {{doc.workat.address}} matTooltipPosition = "below">local</p> -->
+                <img class="card-footer loc-icon" matTooltip={{doc.workat.address}} matTooltipPosition="below" src="assets/Icons/images.png">
+              </div>
+            </div>
+          </div>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf = "Slots">
+    <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngModel])="docObj.data" #tabGroup>
+      <mat-tab *ngFor="let data of slots.currentdateArray;let i = index" label={{data.date}}>
+        <div class="slot-maindiv">
+          <button *ngFor="let slot of data.availabletime;" class="slot-div" (click)="bookSlot(slot, doc, requestObject.issue, data.date)" [ngClass]="{'activediv':slot.status ===false,'inactivediv':slot.status ===true}">
+            {{slot.timeslot}}
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 
 </div>

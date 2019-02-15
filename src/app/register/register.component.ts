@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorServiceService } from '../doctor-service.service';
 import { Router } from '@angular/router';
+import { DatashareService } from '../datashare.service';
+import { MatSnackBar } from '@angular/material';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +24,9 @@ export class RegisterComponent implements OnInit {
 
   stateObj: any = {};
 
-  constructor(private _formBuilder: FormBuilder, private service: DoctorServiceService, private router: Router) {
+  constructor(private _formBuilder: FormBuilder, private service: DoctorServiceService, private router: Router, private datashare: DatashareService, private snackbar: MatSnackBar,
+
+    private title: Title) {
   }
 
   ngOnInit() {
@@ -65,12 +70,23 @@ export class RegisterComponent implements OnInit {
     this.getCitiesList();
     this.getHospitalsList();
     this.getspecilizationList();
-
+    // this.title.setTitle('Register Page');
+    
+    this.title.setTitle('Doctor Appointment - User Register Page');
     console.log('obj is', this.stateObj)
   }
 
   checkDoctorOrNot() {
-    return this.isDoctor = (this.isDoctor === true) ? false : true;
+    console.log(this.isDoctor)
+    if (this.isDoctor === false) {
+      this.title.setTitle('Doctor Appointment - Doctor Register Page');
+      return this.isDoctor = true;
+    }
+    if (this.isDoctor === true) {
+      this.title.setTitle('Doctor Appointment - User Register Page');
+      return this.isDoctor = false;
+    }
+    // return this.isDoctor = (this.isDoctor === true) ? false : true;
   }
 
   // getUserRegisterDetails() {
@@ -83,46 +99,46 @@ export class RegisterComponent implements OnInit {
     console.log('doc work details ', this.docWorkFormGroup.value);
   }
 
-  getStatesList(){
+  getStatesList() {
     this.service.getStatesData().subscribe(res => {
       this.stateObj.Array = res;
       console.log('------>', res)
     })
   }
-  getCitiesList(){
+  getCitiesList() {
     this.service.getCitiesData().subscribe(res => {
       console.log('========>', res)
       this.stateObj.cities = res;
     })
   }
 
-  getCityName(states){
+  getCityName(states) {
     this.stateObj.filterCities = [];
     // console.log('code is', code);
-    for(let i = 0; i < this.stateObj.cities.length; i++){
-      if(states['code'] === this.stateObj.cities[i]['stateid']['code']){
+    for (let i = 0; i < this.stateObj.cities.length; i++) {
+      if (states['code'] === this.stateObj.cities[i]['stateid']['code']) {
         this.stateObj.filterCities.push(this.stateObj.cities[i]);
       }
     }
   }
- getHospitalsList(){
-   this.service.getHospitals().subscribe(res => {
-     console.log('-=-=-=-=->', res);
-     this.stateObj.hospitals = res;
-   })
- }
- getspecilizationList(){
-   this.service.getSpecialization().subscribe(res => {
-     console.log('specialization list is', res);
-     this.stateObj.specialization = res;
-   })
- }
+  getHospitalsList() {
+    this.service.getHospitals().subscribe(res => {
+      console.log('-=-=-=-=->', res);
+      this.stateObj.hospitals = res;
+    })
+  }
+  getspecilizationList() {
+    this.service.getSpecialization().subscribe(res => {
+      console.log('specialization list is', res);
+      this.stateObj.specialization = res;
+    })
+  }
 
- register(){
-   console.log('obj is', this.stateObj);
- }
+  register() {
+    console.log('obj is', this.stateObj);
+  }
 
-  userRegister(){
+  userRegister() {
     let obj: any = {};
     obj.name = this.stateObj.userName;
     obj.email = this.stateObj.userEmail;
@@ -136,10 +152,19 @@ export class RegisterComponent implements OnInit {
     obj.dob = this.stateObj.userDob;
     this.service.register(obj).subscribe(res => {
       console.log('register details are', res)
+      if (res) {
+        localStorage.setItem('role', res['role']);
+        this.datashare.sendRole(res['role']);
+        localStorage.setItem('token', res['token']);
+        this.router.navigate(['/user']);
+      }
+      if (res['status'] === true) {
+        let snackbarRef = this.snackbar.open(" User Registered Successfully ")
+      }
     })
   }
-  doctorRegister(){
-    let obj:any = {};
+  doctorRegister() {
+    let obj: any = {};
     obj.name = this.stateObj.docName;
     obj.email = this.stateObj.docEmail;
     obj.gender = this.stateObj.docGender;
@@ -156,12 +181,25 @@ export class RegisterComponent implements OnInit {
     obj.role = 'doctor';
     this.service.register(obj).subscribe(res => {
       console.log('doc reg is', res);
-      if(res){
+      if (res) {
+        localStorage.setItem('role', res['role']);
+        this.datashare.sendRole(res['role']);
         localStorage.setItem('token', res['token']);
         this.router.navigate(['/doctorpage']);
       }
+      if (res['status'] === true) {
+        let snackbarRef = this.snackbar.open(" Doctor Registered Successfully ")
+      }
     })
   }
-  
+  getCityHospitals(cityId) {
+    this.stateObj.filterHospitals = [];
+    console.log('--->', cityId);
+    for (let i = 0; i < this.stateObj.hospitals.length; i++) {
+      if (cityId === this.stateObj.hospitals[i].cityid._id) {
+        this.stateObj.filterHospitals.push(this.stateObj.hospitals[i]);
+      }
+    }
+  }
 
 }

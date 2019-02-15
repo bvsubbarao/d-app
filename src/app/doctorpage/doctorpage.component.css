@@ -1,22 +1,25 @@
-.slot-div{
-    background-color: #43A047;
-    padding: 12px;
-    border: 1px solid lightgrey;
-    margin: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 10px;
-}
-.slot-maindiv{
-    display: flex;
-    flex-wrap: wrap;
-}
-.activediv{
-    background-color: lightgrey !important;
-}
-.inactivediv{
-    background-color: #43A047 !important;
-}
+
 .container{
     margin-top: 25px;
+}
+.card-bottom{
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+.activebtn{
+   background-color: lightgray !important;
+   color: black !important;
+}
+.inactivebtn{
+    background-color: #607D8B !important;
+    color: white !important;
+}
+.left-text{
+    font-size: 13px;
+    font-weight: bold;
+    color: #7B9BA3;
+}
+.right-text{
+    font-size: 13px;
+    color: #607D8B;
 }

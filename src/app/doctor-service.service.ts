@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DoctorServiceService {
 
-  baseUrl: string = "http://192.168.1.5:9000";
+  baseUrl: string = "http://192.168.1.7:9000";
   timeslots: any = [];
   constructor(private httpRef: HttpClient) { }
 
@@ -49,7 +49,7 @@ export class DoctorServiceService {
         'Authorization': localStorage.getItem('token'),
       })
     };
-    return this.httpRef.get(this.baseUrl + '/api/availability/getAvailableslots', httpOptions);
+    return this.httpRef.get(this.baseUrl + '/api/availability/getAvailableslotsdoctor', httpOptions);
   }
   getProfileData() {
     const httpOptions = {
@@ -69,5 +69,86 @@ export class DoctorServiceService {
     };
     return this.httpRef.post(this.baseUrl + '/api/users/updateprofile', data, httpOptions);
   }
+  getSpecialistList() {
+    return this.httpRef.get(this.baseUrl + '/api/specialists/getallspecialists');
+  }
+  getspecificselectedHospitals(id: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
 
+    return this.httpRef.get(this.baseUrl + '/api/hospitals/getspecifichospitals/' + id, httpOptions);
+  }
+  getListOfDoctors(data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.post(this.baseUrl + '/api/users/getdoctorslist', data, httpOptions);
+  }
+  getAge(isodate) {
+    let birthdate: any = new Date(isodate);
+    let cur: any = new Date();
+    let diff = cur - birthdate; // This is the difference in milliseconds
+    let age = Math.floor(diff / 31557600000); // Divide by 1000*60*60*24*365.25
+    return age;
+  }
+  getDoctorAvailableTimes(docId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.get(this.baseUrl + '/api/availability/getAvailableslotsforuser/' + docId, httpOptions);
+  }
+  getCoupencode(code) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.post(this.baseUrl + '/api/coupons//applycoupon', code, httpOptions);
+  }
+  bookAppointment(data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.post(this.baseUrl + '/api/appointments/bookappointment', data, httpOptions);
+  }
+  getAppointmentsListFromUser() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.get(this.baseUrl + '/api/appointments/getallappointments', httpOptions);
+  }
+  confirmappointment(data){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+    return this.httpRef.post(this.baseUrl + '/api/appointments/updateappointment', data,httpOptions);
+  }
+  getAllappointments(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      })
+    };
+  }
 }

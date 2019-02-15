@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 export class DatashareService {
 
   private role = new Subject<any>();
+  private docrole = new Subject<any>();
 
   constructor() { }
 
@@ -20,6 +21,17 @@ export class DatashareService {
   }
 
   getRole(): Observable<any> {
+    return this.role.asObservable();
+  }
+  senddocrole(message: string) {
+    this.role.next({ text: message });
+  }
+
+  cleardocrole() {
+    this.role.next();
+  }
+
+  getdocrole(): Observable<any> {
     return this.role.asObservable();
   }
 }

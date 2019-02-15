@@ -15,6 +15,11 @@ export class ProfiledetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getprofiledata();
+    if(localStorage.getItem('role') && localStorage.getItem('role') !== null){
+      this.profileObj.role = localStorage.getItem('role');
+    }
+    
+    console.log('role is', this.profileObj.role)
   }
 
   close(){

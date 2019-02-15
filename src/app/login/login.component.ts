@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DoctorServiceService } from '../doctor-service.service';
 import { Router } from '@angular/router';
 import { DatashareService } from '../datashare.service';
+import { MatSnackBar } from '@angular/material';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,24 @@ export class LoginComponent implements OnInit {
 
   isDoctor = false;
 
-  constructor(private service: DoctorServiceService, private router: Router, private datashare:DatashareService) { }
+  constructor(private service: DoctorServiceService, private router: Router, private datashare:DatashareService, private snackbar:MatSnackBar,
+        
+    private title:Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Doctor Appointment - User Login Page');
   }
 
   checkDoctorOrNot() {
-    return this.isDoctor = (this.isDoctor === true) ? false : true;
+    if (this.isDoctor === false) {
+      this.title.setTitle('Doctor Appointment - Doctor Login Page');
+      return this.isDoctor = true;
+    }
+    if (this.isDoctor === true) {
+      this.title.setTitle('Doctor Appointment - User Login Page');
+      return this.isDoctor = false;
+    }
+    // return this.isDoctor = (this.isDoctor === true) ? false : true;
   }
 
   userLogin() {
@@ -33,6 +46,12 @@ export class LoginComponent implements OnInit {
       console.log('--->', res);
       if (res) {
         this.router.navigate(['/user']);
+        this.datashare.sendRole(res['role']);
+        localStorage.setItem('role', res['role']);
+        localStorage.setItem('token', res['token']);
+      }
+      if(res['status'] === true){
+        let snackbarRef = this.snackbar.open('User Logined Successfully');
       }
     });
   }
@@ -50,6 +69,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role', res['role']);
         localStorage.setItem('token', res['token']);
         console.log('<--->', localStorage.getItem('role'));
+      }
+      if(res['status'] === true){
+        let snackbarRef = this.snackbar.open('Doctor Logined Successfully');
       }
     });
   }

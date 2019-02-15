@@ -16,101 +16,102 @@ User Register Form
 -->
 <div *ngIf="!isDoctor" class="container user">
   <div class="row">
-    <div class="col-lg-8 col-md-6 userregimg">
-      <img src="assets\doctor appoint.png" alt="bg">
+    <div class="col-lg-8 col-md-8 userregimg">
+      <img src="assets\doctor_appoint.png" alt="bg" style="width:45%" class="reg_img1">
     </div>
-    <div class=" col-lg-4 col-md-6 userreg">
-      <form [formGroup]="userFormGroup" (ngSubmit)="userRegister()">
+    <div class=" col-lg-4 col-md-4  userreg">
+      <mat-card>
+        <form [formGroup]="userFormGroup" (ngSubmit)="userRegister()">
 
-        <!-- User Name-->
-        <mat-form-field>
-          <input matInput placeholder="Name" formControlName="userName" required [(ngModel)]="stateObj.userName">
-        </mat-form-field>
-        <br>
-        <!-- User email-->
-        <mat-form-field>
-          <input matInput placeholder="Email Id" formControlName="userEmail" required type="email" [(ngModel)]="stateObj.userEmail">
-        </mat-form-field>
-        <br>
+          <!-- User Name-->
+          <mat-form-field class="user_reg_fields">
+            <input matInput placeholder="Name" formControlName="userName" required [(ngModel)]="stateObj.userName">
+          </mat-form-field>
+          <br>
+          <!-- User email-->
+          <mat-form-field class="user_reg_fields">
+            <input matInput placeholder="Email Id" formControlName="userEmail" required type="email" [(ngModel)]="stateObj.userEmail">
+          </mat-form-field>
+          <br>
 
-        <!-- Password -->
-        <mat-form-field>
-          <input matInput placeholder="Password" type="password" formControlName="userPassword" required [(ngModel)]="stateObj.userPassword">
-        </mat-form-field>
-        <br>
+          <!-- Password -->
+          <mat-form-field class="user_reg_fields">
+            <input matInput placeholder="Password" type="password" formControlName="userPassword" required [(ngModel)]="stateObj.userPassword">
+          </mat-form-field>
+          <br>
 
-        <!-- Mobile Number -->
-        <mat-form-field>
-          <input matInput placeholder="Mobile Number" formControlName="userMobileNumber" required [(ngModel)]="stateObj.userMobileNumber">
-        </mat-form-field>
-        <br>
+          <!-- Mobile Number -->
+          <mat-form-field class="user_reg_fields">
+            <input matInput placeholder="Mobile Number" formControlName="userMobileNumber" required [(ngModel)]="stateObj.userMobileNumber">
+          </mat-form-field>
+          <br>
 
-        <!-- Date of Birth -->
+          <!-- Date of Birth -->
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="userDob" [(ngModel)]="stateObj.userDob">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <mat-form-field class="user_reg_fields">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="userDob" [(ngModel)]="stateObj.userDob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <!-- Gender -->
-        <mat-form-field>
-          <mat-select placeholder="Gender" formControlName="userGender" [(ngModel)]="stateObj.userGender">
-            <mat-option *ngFor="let data of gender" [value]="data">
-              {{data}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
+          <!-- Gender -->
+          <mat-form-field class="user_reg_fields">
+            <mat-select placeholder="Gender" formControlName="userGender" [(ngModel)]="stateObj.userGender">
+              <mat-option *ngFor="let data of gender" [value]="data">
+                {{data}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
 
-        <!-- Dob -->
-        <!--<mat-form-field>
+          <!-- Dob -->
+          <!--<mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="Date of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <br>-->
 
-        <!-- State -->
-        <mat-form-field>
-          <mat-select placeholder="State" formControlName="userStae" (selectionChange)="getCityName(stateObj.states)"
-            [(ngModel)]="stateObj.states">
-            <mat-option *ngFor="let states of stateObj.Array" [value]="states">
-              {{states.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <!-- State -->
+          <mat-form-field class="user_reg_fields">
+            <mat-select placeholder="State" formControlName="userStae" (selectionChange)="getCityName(stateObj.states)"
+              [(ngModel)]="stateObj.states">
+              <mat-option *ngFor="let states of stateObj.Array" [value]="states">
+                {{states.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <!-- City -->
-        <mat-form-field>
-          <mat-select placeholder="City" formControlName="userCity" [(ngModel)]="stateObj.cityId">
-            <mat-option *ngFor="let cities of stateObj.filterCities" [value]='cities._id'>
-              {{cities.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <!-- City -->
+          <mat-form-field class="user_reg_fields">
+            <mat-select placeholder="City" formControlName="userCity" [(ngModel)]="stateObj.cityId">
+              <mat-option *ngFor="let cities of stateObj.filterCities" [value]='cities._id'>
+                {{cities.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <!-- Pincode -->
+          <mat-form-field class="user_reg_fields">
+            <input matInput placeholder="Pincode" formControlName="userPincode" required [(ngModel)]="stateObj.userPincode">
+          </mat-form-field>
+          <br>
+          <button [disabled]="userFormGroup.invalid" class="btn" mat-raised-button type="submit">Submit</button>
+        </form>
         <br>
-        <!-- Pincode -->
-        <mat-form-field>
-          <input matInput placeholder="Pincode" formControlName="userPincode" required [(ngModel)]="stateObj.userPincode">
-        </mat-form-field>
-        <br>
-        <button [disabled]="userFormGroup.invalid" class="btn" mat-raised-button type="submit">Submit</button>
-      </form>
-      <br>
 
-      <div>
+        <div>
 
-        <ng-container *ngIf="isDoctor; then doctor;else user"></ng-container>
-        <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
-        <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
-        <span>
-          <a class="doc_reg" (click)="checkDoctorOrNot()">
-            Register Here </a>
-        </span>
+          <ng-container *ngIf="isDoctor; then doctor;else user"></ng-container>
+          <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
+          <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
+          <span>
+            <a class="doc_reg" (click)="checkDoctorOrNot()">
+              Register Here </a>
+          </span>
 
-      </div>
-
+        </div>
+      </mat-card>
     </div>
   </div>
 
@@ -119,152 +120,157 @@ User Register Form
 <!--
 Doctor Register Form
 -->
-<div class="row doctor" *ngIf="isDoctor">
-  <div class="col-lg-8 col-md-6">
-    <img id="doc-reg-img" src="https://labs.practo.com/master-health-checkup_files/family.png" alt="bg" style="width: 50%">
-  </div>
-  <div class="col-lg-4 col-md-6">
-    <div>
-      <mat-vertical-stepper linear #stepper>
-        <!-- Stepper 1-->
-        <mat-step [stepControl]="docPersonalFormGroup">
-          <form [formGroup]="docPersonalFormGroup">
-            <ng-template matStepLabel>Fill out your Personal Details</ng-template>
-            <!-- Name -->
-            <mat-form-field>
-              <input matInput placeholder="Name" formControlName="docName" required [(ngModel)]="stateObj.docName">
-            </mat-form-field>
-            <br>
-            <!-- Email -->
-            <mat-form-field>
-              <input matInput placeholder="Email Id" formControlName="docEmail" required [(ngModel)]="stateObj.docEmail">
-            </mat-form-field>
-
-            <br>
-            <!-- Password -->
-            <mat-form-field>
-              <input matInput placeholder="Password" formControlName="docPassword" required [(ngModel)]="stateObj.docPassword">
-            </mat-form-field>
-            <br>
-            <!-- Gender -->
-            <mat-form-field>
-              <mat-select formControlName="docGender" placeholder="Gender" [(ngModel)]="stateObj.docGender">
-                <mat-option *ngFor="let data of gender" [value]="data">
-                  {{data}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker1" placeholder="Choose a date" formControlName="docDob"
-                [(ngModel)]="stateObj.docDob">
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-            <div>
-              <button mat-raised-button matStepperNext [disabled]="docPersonalFormGroup.invalid">Next</button>
-            </div>
-          </form>
-
-        </mat-step>
-        <!-- Stepper 2-->
-        <mat-step [stepControl]="docContactFormGroup">
-          <form [formGroup]="docContactFormGroup">
-            <ng-template matStepLabel>Fill out your Contact Details</ng-template>
-            <!-- Mobile -->
-            <mat-form-field>
-              <input matInput placeholder="Mobile Number" formControlName="docMobileNumber" required [(ngModel)]="stateObj.docMobileNumber"
-                [disabled]="docPersonalFormGroup.invalid">
-            </mat-form-field>
-            <br>
-            <!-- State -->
-            <mat-form-field>
-              <mat-select placeholder="State" formControlName="docState" (selectionChange)="getCityName(stateObj.data)"
-                [(ngModel)]="stateObj.data">
-                <mat-option *ngFor="let data of stateObj.Array" [value]="data">
-                  {{data.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-            <!-- City -->
-            <mat-form-field>
-              <mat-select placeholder="City" formControlName="docCity" [(ngModel)]="stateObj.docCityId">
-                <mat-option *ngFor="let data of stateObj.filterCities" [value]="data._id">
-                  {{data.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-
-            <div>
-              <button mat-raised-button matStepperNext [disabled]="docContactFormGroup.invalid">Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <!-- Stepper 3-->
-        <mat-step>
-          <form [formGroup]="docWorkFormGroup">
-            <ng-template matStepLabel>Fill out your Work Details</ng-template>
-
-            <!-- Qualification -->
-            <mat-form-field>
-              <input matInput placeholder="Qualification" formControlName="docQualification" required [(ngModel)]="stateObj.docQualification">
-            </mat-form-field>
-            <br>
-
-            <!-- Specialization -->
-            <mat-form-field>
-              <mat-select placeholder="Specialization" formControlName="docSpecialization" [(ngModel)]="stateObj.specializationId">
-                <mat-option *ngFor="let data of stateObj.specialization" [value]="data._id">
-                  {{data.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-
-            <!-- License number -->
-            <mat-form-field>
-              <input matInput placeholder="License number" formControlName="docLicenseNumber" required [(ngModel)]="stateObj.docLicenseNumber">
-            </mat-form-field>
-            <br>
-
-            <!-- Works at-->
-            <mat-form-field>
-              <mat-select placeholder="WorkAt" formControlName="docWorksAt" [(ngModel)]="stateObj.docWorksAtId">
-                <mat-option *ngFor="let data of stateObj.hospitals" [value]="data._id">
-                  {{data.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-
-
-            <!-- Fee -->
-            <mat-form-field>
-              <input matInput placeholder="Fee Charged" formControlName="docFee" required [(ngModel)]="stateObj.docFee">
-            </mat-form-field>
-            <br>
-            <div>
-              <button mat-raised-button matStepperNext [disabled]="docWorkFormGroup.invalid" (click)="doctorRegister()">Submit</button>
-            </div>
-          </form>
-        </mat-step>
-      </mat-vertical-stepper>
-
-      <div>
-
-        <ng-container *ngIf="isDoctor; then doctor;else user"></ng-container>
-        <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
-        <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
-        <span>
-          <a class="doc_reg" (click)="checkDoctorOrNot()">
-            Register Here </a>
-        </span>
-
-      </div>
-
+<div class="container">
+  <div class="row doctor" *ngIf="isDoctor">
+    <div class="col-lg-8 col-md-8 userregimg">
+      <img id="doc-reg-img" src="https://labs.practo.com/master-health-checkup_files/family.png" class="reg_img1" alt="bg"
+        style="width: 45%">
     </div>
+    <div class="col-lg-4 col-md-4 userreg">
+      <mat-card>
+        <div>
+          <mat-vertical-stepper linear #stepper>
+            <!-- Stepper 1-->
+            <mat-step [stepControl]="docPersonalFormGroup">
+              <form [formGroup]="docPersonalFormGroup">
+                <ng-template matStepLabel>Fill out your Personal Details</ng-template>
+                <!-- Name -->
+                <mat-form-field>
+                  <input matInput placeholder="Name" formControlName="docName" required [(ngModel)]="stateObj.docName">
+                </mat-form-field>
+                <br>
+                <!-- Email -->
+                <mat-form-field>
+                  <input matInput placeholder="Email Id" formControlName="docEmail" required [(ngModel)]="stateObj.docEmail">
+                </mat-form-field>
 
+                <br>
+                <!-- Password -->
+                <mat-form-field>
+                  <input matInput placeholder="Password" formControlName="docPassword" required [(ngModel)]="stateObj.docPassword">
+                </mat-form-field>
+                <br>
+                <!-- Gender -->
+                <mat-form-field>
+                  <mat-select formControlName="docGender" placeholder="Gender" [(ngModel)]="stateObj.docGender">
+                    <mat-option *ngFor="let data of gender" [value]="data">
+                      {{data}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker1" placeholder="Choose a date" formControlName="docDob"
+                    [(ngModel)]="stateObj.docDob">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <div>
+                  <button mat-raised-button matStepperNext [disabled]="docPersonalFormGroup.invalid">Next</button>
+                </div>
+              </form>
+
+            </mat-step>
+            <!-- Stepper 2-->
+            <mat-step [stepControl]="docContactFormGroup">
+              <form [formGroup]="docContactFormGroup">
+                <ng-template matStepLabel>Fill out your Contact Details</ng-template>
+                <!-- Mobile -->
+                <mat-form-field>
+                  <input matInput placeholder="Mobile Number" formControlName="docMobileNumber" required [(ngModel)]="stateObj.docMobileNumber"
+                    [disabled]="docPersonalFormGroup.invalid">
+                </mat-form-field>
+                <br>
+                <!-- State -->
+                <mat-form-field>
+                  <mat-select placeholder="State" formControlName="docState" (selectionChange)="getCityName(stateObj.data)"
+                    [(ngModel)]="stateObj.data">
+                    <mat-option *ngFor="let data of stateObj.Array" [value]="data">
+                      {{data.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+                <!-- City -->
+                <mat-form-field>
+                  <mat-select placeholder="City" formControlName="docCity" (selectionChange)="getCityHospitals(stateObj.docCityId)"
+                    [(ngModel)]="stateObj.docCityId">
+                    <mat-option *ngFor="let data of stateObj.filterCities" [value]="data._id">
+                      {{data.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+                <div>
+                  <button mat-raised-button matStepperNext [disabled]="docContactFormGroup.invalid">Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <!-- Stepper 3-->
+            <mat-step>
+              <form [formGroup]="docWorkFormGroup">
+                <ng-template matStepLabel>Fill out your Work Details</ng-template>
+
+                <!-- Qualification -->
+                <mat-form-field>
+                  <input matInput placeholder="Qualification" formControlName="docQualification" required [(ngModel)]="stateObj.docQualification">
+                </mat-form-field>
+                <br>
+
+                <!-- Specialization -->
+                <mat-form-field>
+                  <mat-select placeholder="Specialization" formControlName="docSpecialization" [(ngModel)]="stateObj.specializationId">
+                    <mat-option *ngFor="let data of stateObj.specialization" [value]="data._id">
+                      {{data.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+                <!-- License number -->
+                <mat-form-field>
+                  <input matInput placeholder="License number" formControlName="docLicenseNumber" required [(ngModel)]="stateObj.docLicenseNumber">
+                </mat-form-field>
+                <br>
+
+                <!-- Works at-->
+                <mat-form-field>
+                  <mat-select placeholder="WorkAt" formControlName="docWorksAt" [(ngModel)]="stateObj.docWorksAtId">
+                    <mat-option *ngFor="let data of stateObj.filterHospitals" [value]="data._id">
+                      {{data.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+
+
+                <!-- Fee -->
+                <mat-form-field>
+                  <input matInput placeholder="Fee Charged" formControlName="docFee" required [(ngModel)]="stateObj.docFee">
+                </mat-form-field>
+                <br>
+                <div>
+                  <button mat-raised-button matStepperNext [disabled]="docWorkFormGroup.invalid" (click)="doctorRegister()">Submit</button>
+                </div>
+              </form>
+            </mat-step>
+          </mat-vertical-stepper>
+
+          <div>
+
+            <ng-container *ngIf="isDoctor; then doctor;else user"></ng-container>
+            <ng-template #doctor><span style="font-size: smaller">Are you not a Doctor?</span></ng-template>
+            <ng-template #user><span style="font-size: smaller">Are you a Doctor?</span></ng-template>
+            <span>
+              <a class="doc_reg" (click)="checkDoctorOrNot()">
+                Register Here </a>
+            </span>
+
+          </div>
+
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>

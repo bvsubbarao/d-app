@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 })
 export class CommonService {
   auth_token = '';
-  private baseAPI = 'http://192.168.1.5:9000';
+  private baseAPI = 'http://192.168.1.2:9000';
   // Passing the token in headers
   header = new HttpHeaders({'Authorization': this.auth_token});
 

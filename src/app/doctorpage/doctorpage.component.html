@@ -9,89 +9,126 @@
     <mat-tab-group>
       <mat-tab label="Confirmed">
         <div class="row">
-          <div class="col-lg-6">
-            <mat-card style="margin:5px;">
-              <div class="row">
-                <div class="col-lg-6"> Patient Name </div>
-                <div class="col-lg-6"> :Subbarao </div>
+          <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let appointments of appointmentList.confirmedList">
+            <mat-card class="card-main" *ngIf="appointments.confirmstatus === true">
+              <div style="padding:15px;">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Patient Name </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-7 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.bookedby.name}} </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Gender </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.bookedby.gender}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Age </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.dob}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Health Issue </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.issue}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Booking Time & Date </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.time}} / {{appointments.date}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Mobile Number </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.bookedby.mobile}} </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 head-div">
+                    <p class="left-text"> Booking Id </p>
+                  </div>
+                  <div class="col-lg-1 col-md-1 head-div">
+                    :
+                  </div>
+                  <div class="col-lg-4 col-md-7 head-div margin-div">
+                    <p class="right-text"> {{appointments.bookingid}} </p>
+                  </div>
+                </div>
               </div>
-              <div class="row">
-                <div class="col-lg-6"> Consult Type </div>
-                <div class="col-lg-6"> :Cordialogist </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Health Issue </div>
-                <div class="col-lg-6"> :Chest Pain </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Booking Id </div>
-                <div class="col-lg-6"> :IB12373C </div>
-              </div>
+              <!-- </div> -->
+              <!-- </div> -->
             </mat-card>
+
           </div>
-          <div class="col-lg-6">
-            <mat-card style="margin:5px;">
-              <div class="row">
-                <div class="col-lg-6"> Patient Name </div>
-                <div class="col-lg-6"> :Subbarao </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Consult Type </div>
-                <div class="col-lg-6"> :Cordialogist </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Health Issue </div>
-                <div class="col-lg-6"> :Chest Pain </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Booking Id </div>
-                <div class="col-lg-6"> :IB12373C </div>
-              </div>
-            </mat-card>
-          </div>
+          <p *ngIf="appointmentList.appConfirmCondition">{{appointmentList.appConfirmCondition}}</p>
+
         </div>
       </mat-tab>
-      <mat-tab label="Pending">
+      <mat-tab label="To Be Confirm">
         <div class="row">
-          <div class="col-lg-6">
-            <mat-card style="margin:5px;height: 145px;">
+          <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let appointments of appointmentList.confirmedList">
+            <mat-card class="card-main" *ngIf="appointments.confirmstatus === false">
               <div class="row">
-                <div class="col-lg-6"> Patient Name </div>
-                <div class="col-lg-6"> :Subbarao </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Consult Type </div>
-                <div class="col-lg-6"> :Cordialogist </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Health Issue </div>
-                <div class="col-lg-6"> :Chest Pain </div>
-              </div>
-              <div class="confirm_btn">
-                <button mat-raised-button color="primary"> Confirm </button>
+                <div class="col-lg-8 col-md-8 card-div-padding">
+                  <div> <span>Patient Name :</span> <span> {{appointments.bookedby.name}} </span></div>
+                  <div> Gender : <span> {{appointments.bookedby.gender}} </span></div>
+                  <div> Age : <span> {{appointments.dob}} </span></div>
+                  <div> Health Issue : <span> {{appointments.issue}} </span></div>
+                  <div> Booking Time & Date : <span> {{appointments.time}} / {{appointments.date}} </span></div>
+                  <div> Mobile Number : <span> {{appointments.bookedby.mobile}} </span></div>
+                </div>
+                <div class="col-lg-12 card-bottom">
+                  <div style="float:right;">
+                    <button mat-raised-button style="background-color:#607D8B;color:white;" (click)="confirmAppointment(appointments)"
+                      [disabled]="appointments.confirmstatus" [ngClass]="appointments.confirmstatus ? 'activebtn' : 'inactivebtn'">
+                      Confirm </button>
+                  </div>
+                </div>
               </div>
             </mat-card>
           </div>
-          <div class="col-lg-6">
-            <mat-card style="margin:5px;height: 145px;">
-              <div class="row">
-                <div class="col-lg-6"> Patient Name </div>
-                <div class="col-lg-6"> :Subbarao </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Consult Type </div>
-                <div class="col-lg-6"> :Cordialogist </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"> Health Issue </div>
-                <div class="col-lg-6"> :Chest Pain </div>
-              </div>
+          <p *ngIf="appointmentList.appSchCondition">{{appointmentList.appSchCondition}}</p>
 
-              <div class="confirm_btn">
-                <button mat-raised-button color="primary"> Confirm </button>
-              </div>
-            </mat-card>
-          </div>
         </div>
       </mat-tab>
     </mat-tab-group>
@@ -108,8 +145,8 @@
         </div>
       </mat-tab>
     </mat-tab-group>
-    <div align = "center">
-      <button mat-raised-button (click)="saveDoctorSlots()" color = "primary"> Save </button>
+    <div align="center" style="margin-top:6px;">
+      <button mat-raised-button (click)="saveDoctorSlots()" style="background-color:#607D8B;color:white"> Save </button>
     </div>
   </div>
 </div>

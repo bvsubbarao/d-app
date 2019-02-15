@@ -51,8 +51,9 @@ body {
   font-size: 13px;
   /* color: #607D8B !important; */
   cursor: pointer;
-  color: white;
-  font-size: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #DE243A !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -115,11 +116,11 @@ body {
 .ring{
   height: 50px;
     width: 50px;
-    background-color: #DE243A;
+    /* background-color: #DE243A; */
     display: block;
     margin: auto;
     border-radius: 50px;
-    box-shadow: -1px 0px 10px 9px lightgrey;
+    box-shadow: -1px 0px 31px 9px lightgrey;
 }
 .log_btn{
   width: 100%;
@@ -150,7 +151,11 @@ body {
     padding-top: 37px;
 }
 .main_div{
-  padding: 7% 10%;
+  padding: 7% 14%;
+}
+.user_search_hospitals .ip-fields{
+  margin: 5px 0px;
+  padding: 0px 5px;
 }
 @media only screen and (max-width: 425px) {
   .main_div {
@@ -164,6 +169,70 @@ body {
   .log_inner_card{
     right:1%;
   }
+}
+@media only screen and (max-width: 425px) and (min-width: 375px) {
+  .head-div{
+    width: 30% !important;
+  }
+  .left-text{
+    font-size: 12px;
+  }
+  .right-text{
+    font-size: 12px;
+  }
+  .margin-div{
+    margin-left: -40px;
+  }
+}
+.card-main{
+  border-radius: 15px !important;
+}
+@media only screen and (min-width:320px) {
+  .head-div{
+    width: 20%;
+  }
+  .left-text{
+    font-size: 12px;
+  }
+  .right-text{
+    font-size: 12px;
+  }
+  /* .card-main{
+    width: 100% !important;
+  } */
+}
+.nopadding{
+  padding: 0px !important;
+}
+.card-div-padding{
+  padding: 25px;
+  border-left: 1px solid lightgrey;
+}
+.card-div-bottom{
+  /* padding: 10px; */
+  border-top: 1px solid lightgrey;
+}
+.card-footer{
+  padding: 10px;
+  margin: 0px;
+  border-top:0px !important;
+}
+.card-main{
+  padding: 0px !important;
+  /* width: 87%; */
+}
+.loc-icon{
+  border-left: 1px solid lightgray;
+  /* margin-top: 5px; */
+}
+.avail_btn{
+  position: absolute;
+    bottom: 20px;
+    right:40px;
+}
+.btn{
+  background-color: #607D8B;
+  color: white;
 }
 .log_img2{
     width: 100px;
@@ -198,4 +267,35 @@ body {
     border-radius: 50%;
     padding: 1px 6px;
     font-weight: 400;
+}
+.doc_info{
+  width: 50%;
+  padding: 10px;
+}
+@media only screen and (max-width: 768px) {
+  .doc_info {
+    width: 100% !important;
+  }
+}
+
+.slot-div{
+  background-color: #43A047 !important;
+  padding: 12px;
+  border: 1px solid lightgrey;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 10px;
+}
+.slot-maindiv{
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid lightgray;
+  margin-top: 9px;
+}
+.activediv{
+  background-color: lightgrey !important;
+}
+.inactivediv{
+  background-color: #43A047 !important;
 }

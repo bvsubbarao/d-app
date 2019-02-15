@@ -1,6 +1,6 @@
 <div class="close" (click) = close()> x </div>
 
-<div style="width:600px;">
+<div style="width:600px;" *ngIf = "profileObj.role === 'doctor'">
   <p class="profile"> Profile </p>
   <div class="row">
     <div class="col-lg-4 caption">
@@ -20,23 +20,23 @@
     </div>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-lg-4 caption">
       DOB:
     </div>
     <div class="col-lg-8 caption">
       <input [(ngModel)]="profileObj.dob" class="profile_inp form-control">
     </div>
-  </div>
+  </div> -->
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-lg-4 caption">
       Gender:
     </div>
     <div class="col-lg-8">
       <input [(ngModel)]="profileObj.gender" class="profile_inp form-control">
     </div>
-  </div>
+  </div> -->
 
   <div class="row">
     <div class="col-lg-4 caption">
@@ -56,14 +56,14 @@
     </div>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-lg-4 caption">
       Profession:
     </div>
     <div class="col-lg-8">
       <input [(ngModel)]="profileObj.role" class="profile_inp form-control form-control">
     </div>
-  </div>
+  </div> -->
 
   <div class="row">
     <div class="col-lg-4 caption">
@@ -124,3 +124,57 @@
   </div>
 
 </div>
+
+
+<div style="width:600px;" *ngIf = "profileObj.role === 'user'">
+    <p class="profile"> Profile </p>
+    <div class="row">
+      <div class="col-lg-4 caption">
+        Name:
+      </div>
+      <div class="col-lg-8">
+        <input [(ngModel)]="profileObj.name" class="profile_inp form-control">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-4 caption">
+        Email:
+      </div>
+      <div class="col-lg-8">
+        <input [(ngModel)]="profileObj.email" class="profile_inp form-control">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-4 caption">
+        Mobile Number:
+      </div>
+      <div class="col-lg-8">
+        <input [(ngModel)]="profileObj.mobile" class="profile_inp form-control">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-4 caption">
+        City:
+      </div>
+      <div class="col-lg-8">
+        <input *ngIf="profileObj['cityid'] && profileObj['cityid']['name']" [(ngModel)]="profileObj['cityid']['name']" class="profile_inp form-control">
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-4 caption">
+        State:
+      </div>
+      <div class="col-lg-8">
+        <input *ngIf="profileObj['stateid'] && profileObj['stateid']['name']" [(ngModel)]="profileObj['stateid']['name']" class="profile_inp form-control">
+      </div>
+    </div>
+  
+    <div align = "center" style="margin-top:5px;">
+      <button mat-raised-button color = "primary" (click) = "updateDetails()"> Update </button>
+    </div>
+  
+  </div>

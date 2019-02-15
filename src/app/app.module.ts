@@ -15,6 +15,8 @@ import {DoctorpageComponent} from './doctorpage/doctorpage.component';
 import {UserComponent} from './user/user.component';
 import { ProfiledetailsComponent } from './profiledetails/profiledetails.component';
 import { DatashareService } from './datashare.service';
+import { ApplyCoupnComponent } from './apply-coupn/apply-coupn.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { DatashareService } from './datashare.service';
     RegisterComponent,
     LoginComponent,
     DoctorpageComponent,
-    UserComponent
-    ProfiledetailsComponent
+    UserComponent,
+    ProfiledetailsComponent,
+    ApplyCoupnComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +38,9 @@ import { DatashareService } from './datashare.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DoctorServiceService, DatashareService],
+  providers: [DoctorServiceService, DatashareService, {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}],
   bootstrap: [AppComponent],
-  entryComponents: [ProfiledetailsComponent]
+  entryComponents: [ProfiledetailsComponent,ApplyCoupnComponent]
 })
 export class AppModule {
 }
