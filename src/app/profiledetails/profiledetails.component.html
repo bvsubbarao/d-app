@@ -1,27 +1,27 @@
 <div class="close" (click) = close()> x </div>
 
-<div style="width:600px;" *ngIf = "profileObj.role === 'doctor'">
+<div *ngIf = "profileObj.role === 'doctor'">
   <p class="profile"> Profile </p>
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Name:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input [(ngModel)]="profileObj.name" class="profile_inp form-control">
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Email:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input [(ngModel)]="profileObj.email" class="profile_inp form-control">
     </div>
   </div>
 
   <!-- <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       DOB:
     </div>
     <div class="col-lg-8 caption">
@@ -30,92 +30,92 @@
   </div> -->
 
   <!-- <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Gender:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input [(ngModel)]="profileObj.gender" class="profile_inp form-control">
     </div>
   </div> -->
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Mobile Number:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input [(ngModel)]="profileObj.mobile" class="profile_inp form-control">
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Qualification:
     </div>
-    <div class="col-lg-8">
-      <input [(ngModel)]="profileObj.qualification" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input [(ngModel)]="profileObj.qualification" class="profile_inp form-control" disabled>
     </div>
   </div>
 
   <!-- <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Profession:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input [(ngModel)]="profileObj.role" class="profile_inp form-control form-control">
     </div>
   </div> -->
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       License Number:
     </div>
-    <div class="col-lg-8">
-      <input [(ngModel)]="profileObj.licensenumber" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input [(ngModel)]="profileObj.licensenumber" class="profile_inp form-control" disabled>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Specialist In:
     </div>
-    <div class="col-lg-8">
-      <input *ngIf="profileObj['specialistid'] && profileObj['specialistid']['code']" [(ngModel)]="profileObj['specialistid']['code']" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input *ngIf="profileObj['specialistid'] && profileObj['specialistid']['name']" [(ngModel)]="profileObj['specialistid']['name']" class="profile_inp form-control" disabled>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Working Place:
     </div>
-    <div class="col-lg-8">
-      <input *ngIf="profileObj['workat'] && profileObj['workat']['name']" [(ngModel)]="profileObj['workat']['name']" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input *ngIf="profileObj['workat'] && profileObj['workat']['name']" [(ngModel)]="profileObj['workat']['name']" class="profile_inp form-control" disabled>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       Consult Fee:
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8">
       <input  [(ngModel)]="profileObj.fee" class="profile_inp form-control">
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       City:
     </div>
-    <div class="col-lg-8">
-      <input *ngIf="profileObj['cityid'] && profileObj['cityid']['name']" [(ngModel)]="profileObj['cityid']['name']" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input *ngIf="profileObj['cityid'] && profileObj['cityid']['name']" [(ngModel)]="profileObj['cityid']['name']" class="profile_inp form-control" disabled>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 caption">
+    <div class="col-lg-4 col-md-4 caption">
       State:
     </div>
-    <div class="col-lg-8">
-      <input *ngIf="profileObj['stateid'] && profileObj['stateid']['name']" [(ngModel)]="profileObj['stateid']['name']" class="profile_inp form-control">
+    <div class="col-lg-8 col-md-8">
+      <input *ngIf="profileObj['stateid'] && profileObj['stateid']['name']" [(ngModel)]="profileObj['stateid']['name']" class="profile_inp form-control" disabled>
     </div>
   </div>
 
@@ -126,49 +126,49 @@
 </div>
 
 
-<div style="width:600px;" *ngIf = "profileObj.role === 'user'">
+<div *ngIf = "profileObj.role === 'user'">
     <p class="profile"> Profile </p>
     <div class="row">
-      <div class="col-lg-4 caption">
+      <div class="col-lg-4 col-md-4 caption">
         Name:
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <input [(ngModel)]="profileObj.name" class="profile_inp form-control">
       </div>
     </div>
   
     <div class="row">
-      <div class="col-lg-4 caption">
+      <div class="col-lg-4 col-md-4 caption">
         Email:
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <input [(ngModel)]="profileObj.email" class="profile_inp form-control">
       </div>
     </div>
   
     <div class="row">
-      <div class="col-lg-4 caption">
+      <div class="col-lg-4 col-md-4 caption">
         Mobile Number:
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <input [(ngModel)]="profileObj.mobile" class="profile_inp form-control">
       </div>
     </div>
   
     <div class="row">
-      <div class="col-lg-4 caption">
+      <div class="col-lg-4 col-md-4 caption">
         City:
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <input *ngIf="profileObj['cityid'] && profileObj['cityid']['name']" [(ngModel)]="profileObj['cityid']['name']" class="profile_inp form-control">
       </div>
     </div>
   
     <div class="row">
-      <div class="col-lg-4 caption">
+      <div class="col-lg-4 col-md-4 caption">
         State:
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <input *ngIf="profileObj['stateid'] && profileObj['stateid']['name']" [(ngModel)]="profileObj['stateid']['name']" class="profile_inp form-control">
       </div>
     </div>

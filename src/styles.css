@@ -55,6 +55,10 @@ body {
   font-weight: bold;
   color: #DE243A !important;
 }
+.profile-div{
+  width:600px;
+  padding: 4px !important;
+}
 
 @media only screen and (max-width: 768px) {
   .register_div {
@@ -68,8 +72,30 @@ body {
   .mat-form-field-hide-placeholder {
     font-size: 10px !important;
   }
+  .profile-div{
+    width:100%;
+  }
 }
-
+@media only screen and (max-height: 600px) {
+  .profile-div{
+    max-height: 500px;
+  }
+}
+@media only screen and (max-height: 500px) {
+  .profile-div{
+    max-height: 400px;
+  }
+}
+@media only screen and (max-height: 400px) {
+  .profile-div{
+    max-height: 300px;
+  }
+}
+@media only screen and (max-height: 300px) {
+  .profile-div{
+    max-height: 300px;
+  }
+}
 .border {
   border-bottom: 1px solid black !important;
 }
@@ -191,6 +217,11 @@ body {
   .head-div{
     width: 20%;
   }
+  .head-div1{
+    width: 38%;
+    padding: 0px;
+    word-break: break-word;
+  }
   .left-text{
     font-size: 12px;
   }
@@ -228,7 +259,7 @@ body {
 .avail_btn{
   position: absolute;
     bottom: 20px;
-    right:40px;
+    /* right:40px; */
 }
 .btn{
   background-color: #607D8B;
@@ -267,16 +298,52 @@ body {
     border-radius: 50%;
     padding: 1px 6px;
     font-weight: 400;
+    /* position: absolute; */
+}
+.message{
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+.mat-dialog-container{
+  position: relative;
 }
 .doc_info{
-  width: 50%;
+  width: 290px;
   padding: 10px;
 }
-@media only screen and (max-width: 768px) {
+
+.left-text{
+  font-size: 13px;
+  font-weight: bold;
+  color: #7B9BA3;
+}
+.right-text{
+  font-size: 13px;
+  color: #607D8B;
+}
+@media only screen and (min-width:1024px) {
   .doc_info {
-    width: 100% !important;
+    width: 450px !important;
   }
 }
+@media only screen and (min-width:1366px) {
+  .doc_info {
+    width: 500px !important;
+  }
+}
+@media only screen and (min-width:481px) and (max-width:768px) {
+  .doc_info {
+    width: 660px !important;
+  }
+}
+@media only screen and (min-width:420px) and (max-width:480px) {
+  .doc_info {
+    width: 390px !important;
+  }
+}
+
 
 .slot-div{
   background-color: #43A047 !important;
@@ -298,4 +365,16 @@ body {
 }
 .inactivediv{
   background-color: #43A047 !important;
+}
+
+.bookedactivediv{
+   background-color: red !important;
+   color: white !important; 
+   cursor: not-allowed !important;
+}
+.nomargin{
+  margin-bottom: 0px !important;
+}
+textarea{
+  resize: none;
 }

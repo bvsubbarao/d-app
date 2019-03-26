@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
 
   isDoctor = false;
 
-  constructor(private service: DoctorServiceService, private router: Router, private datashare:DatashareService, private snackbar:MatSnackBar,
-        
-    private title:Title) { }
+  constructor(private service: DoctorServiceService, private router: Router, private datashare: DatashareService, private snackbar: MatSnackBar,
+
+    private title: Title) { }
 
   ngOnInit() {
     this.title.setTitle('Doctor Appointment - User Login Page');
@@ -41,16 +41,14 @@ export class LoginComponent implements OnInit {
     obj.email = this.loginObj.email;
     obj.password = this.loginObj.password;
     obj.role = 'user';
-    // console.log('---------->')
     this.service.login(obj).subscribe(res => {
-      console.log('--->', res);
       if (res) {
         this.router.navigate(['/user']);
         this.datashare.sendRole(res['role']);
         localStorage.setItem('role', res['role']);
         localStorage.setItem('token', res['token']);
       }
-      if(res['status'] === true){
+      if (res['status'] === true) {
         let snackbarRef = this.snackbar.open('User Logined Successfully');
       }
     });
@@ -62,15 +60,13 @@ export class LoginComponent implements OnInit {
     obj.password = this.loginObj.docPassword;
     obj.role = 'doctor';
     this.service.login(obj).subscribe(res => {
-      console.log('--->', res);
       if (res) {
         this.router.navigate(['/doctorpage']);
         this.datashare.sendRole(res['role']);
         localStorage.setItem('role', res['role']);
         localStorage.setItem('token', res['token']);
-        console.log('<--->', localStorage.getItem('role'));
       }
-      if(res['status'] === true){
+      if (res['status'] === true) {
         let snackbarRef = this.snackbar.open('Doctor Logined Successfully');
       }
     });

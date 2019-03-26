@@ -1,6 +1,6 @@
 .card-padding{
     border-left: 1px solid lightgrey;
-    /* padding: 25px; */
+    padding: 10px;
 }
 /deep/.mat-dialog-container{
     padding: 0px !important;

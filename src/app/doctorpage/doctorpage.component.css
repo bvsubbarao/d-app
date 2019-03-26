@@ -4,7 +4,7 @@
 }
 .card-bottom{
     padding: 10px;
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
 }
 .activebtn{
    background-color: lightgray !important;
@@ -13,13 +13,4 @@
 .inactivebtn{
     background-color: #607D8B !important;
     color: white !important;
-}
-.left-text{
-    font-size: 13px;
-    font-weight: bold;
-    color: #7B9BA3;
-}
-.right-text{
-    font-size: 13px;
-    color: #607D8B;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DoctorServiceService } from '../doctor-service.service';
 import { MatDialogRef } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-profiledetails',
@@ -9,33 +10,33 @@ import { MatDialogRef } from '@angular/material';
 })
 export class ProfiledetailsComponent implements OnInit {
 
-  profileObj:any = {};
+  profileObj: any = {};
 
-  constructor(private service: DoctorServiceService,private dialogref:MatDialogRef<ProfiledetailsComponent>) { }
+  constructor(private service: DoctorServiceService, private dialogref: MatDialogRef<ProfiledetailsComponent>, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.getprofiledata();
-    if(localStorage.getItem('role') && localStorage.getItem('role') !== null){
+    if (localStorage.getItem('role') && localStorage.getItem('role') !== null) {
       this.profileObj.role = localStorage.getItem('role');
     }
-    
-    console.log('role is', this.profileObj.role)
   }
 
-  close(){
+  close() {
     this.dialogref.close();
   }
 
-  getprofiledata(){
+  getprofiledata() {
     this.service.getProfileData().subscribe(res => {
-      console.log('profile data is', res);
       this.profileObj = res;
     })
   }
 
-  updateDetails(){
+  updateDetails() {
     this.service.updateprofiledetails(this.profileObj).subscribe(res => {
-      console.log('updated products', res);
+      if (res['status'] === true) {
+        let snackbarRef = this.snackbar.open(res['message']);
+        this.close();
+      }
     })
   }
 

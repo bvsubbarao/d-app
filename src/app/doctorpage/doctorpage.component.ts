@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DoctorServiceService } from '../doctor-service.service';
 import { Title } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-doctorpage',
@@ -24,7 +25,7 @@ export class DoctorpageComponent implements OnInit {
   confirmBookingList: any = {};
   // date = new Date();
 
-  constructor(private server: DoctorServiceService, private title: Title) { }
+  constructor(private server: DoctorServiceService, private title: Title, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     // this.tabGroup._tabs.first.textLabel
@@ -43,8 +44,7 @@ export class DoctorpageComponent implements OnInit {
       this.selectObj.key = key;
       this.selectedDate = this.dateConvert(0);
       this.getDoctorTimeSlots();
-      this.selectedTimeSlots();
-      console.log('----', this.selectedDate)
+      // this.selectedTimeSlots();
       this.array.dates = [];
       this.listOfApplicant = false;
       this.Availability = true;
@@ -53,7 +53,6 @@ export class DoctorpageComponent implements OnInit {
       for (let i = 0; i < 7; i++) {
         this.data = this.dateConvert(i);
         this.array.dates.push(this.data);
-        console.log('-----', this.array.dates)
       }
     }
   }
@@ -72,26 +71,29 @@ export class DoctorpageComponent implements OnInit {
     //   month = (date.getMonth()) + 1;
     //   currentdate = date.getDate() + i;
     // }
-    return currentdate + '-' + month + '-' + year;
+    return year + '-' + month + '-' + currentdate;
   }
   getLabel(date) {
     this.selectedDate = date['tab']['textLabel'];
-    this.getDoctorTimeSlots();
+    // this.getDoctorTimeSlots();
+    // this.timeSlots = this.timeSlotsNew;
     this.selectedTimeSlots();
   }
   getDoctorTimeSlots() {
     this.server.getTimeSlots().subscribe(res => {
       this.timeSlots = res;
+      this.timeSlotsNew = [...this.timeSlots];
+      this.selectedTimeSlots();
+
     })
   }
   bookSlot(value) {
-    console.log('------------->', value)
     this.timeSlots.forEach((data => {
-      if (value._id === data._id && value.status === false) {
-        data.status = true;
+      if (value._id === data._id && value.status === 'not available for booking') {
+        data.status = 'available for booking';
       }
-      else if (value._id === data._id && value.status === true) {
-        data.status = false;
+      else if (value._id === data._id && value.status === 'available for booking') {
+        data.status = 'not available for booking';
       }
     }));
   }
@@ -100,19 +102,19 @@ export class DoctorpageComponent implements OnInit {
     obj.date = this.selectedDate;
     obj.availabletime = this.timeSlots;
     this.server.sendTimeSlots(obj).subscribe(res => {
-      console.log('000000', res)
-      if (res) {
+      if (res['status'] === true) {
         this.selectedTimeSlots();
+        let snackbarRef = this.snackbar.open(res['message']);
       }
     })
   }
   selectedTimeSlots() {
+    this.timeSlots = this.timeSlotsNew;
+
     this.server.getSlots().subscribe(res => {
-      console.log(res)
       this.createSlotArray = res;
       if (this.createSlotArray.length > 0) {
         this.createSlotArray.forEach(data => {
-          console.log('------->', data, this.selectedDate)
           if (data.date == this.selectedDate) {
             this.timeSlots = data['availabletime'];
           }
@@ -123,7 +125,6 @@ export class DoctorpageComponent implements OnInit {
   getAppointmentList() {
     this.appointmentList.confirmedList = [];
     this.server.getAppointmentsListFromUser().subscribe(res => {
-      console.log('res is', res);
       this.appointmentList.appointments = res;
       this.appointmentList.appointments.forEach((data, i) => {
         data.dob = this.server.getAge(this.appointmentList.appointments[i].bookedby.dob)
@@ -139,12 +140,9 @@ export class DoctorpageComponent implements OnInit {
       if (currentdate < 10) {
         currentdate = '0' + currentdate;
       }
-      let todaydate = currentdate + '-' + month + '-' + year;
-      console.log('iiiiiiii', todaydate)
-      for(let i = 0; i < this.appointmentList.appointments.length; i++){
-        if(todaydate <= this.appointmentList.appointments[i]['date']){
-          this.appointmentList.confirmedList.push(this.appointmentList.appointments[i])
-        }
+      let todaydate = year + '-' + month + '-' + currentdate;
+      for (let i = 0; i < this.appointmentList.appointments.length; i++) {
+        this.appointmentList.confirmedList.push(this.appointmentList.appointments[i])
       }
       let appSchCondition = 0, appConfirmCondition = 0;
       for (let i = 0; i < this.appointmentList.confirmedList.length; i++) {
@@ -154,11 +152,11 @@ export class DoctorpageComponent implements OnInit {
         if (this.appointmentList.confirmedList[i].confirmstatus === true) {
           appConfirmCondition++;
         }
-        if (appSchCondition === i) {
+        if (appSchCondition === this.appointmentList.confirmedList.length) {
           this.appointmentList.appSchCondition = 'No appointments scheduled';
         }
-        if (appConfirmCondition === i) {
-          this.appointmentList.appConfirmCondition = 'No appointments Confirmed';
+        if (appConfirmCondition === this.appointmentList.confirmedList.length) {
+          this.appointmentList.appConfirmCondition = 'No appointments confirmed';
         }
       }
       // this.appointmentList.appointments.sort(function (a, b) {
@@ -167,14 +165,13 @@ export class DoctorpageComponent implements OnInit {
       //   return date2.getTime() - date1.getTime();
       // });
       // this.appointmentList.confirmedList.sort(function (a, b) {
-      //   console.log('ududgdgd', a, b)
+
       //   let date1 = new Date(a.date);
       //   let date2 = new Date(b.date);
-      //   console.log('dates are', date1, date2)
+
       //   return date2.getTime() - date1.getTime();
       // });
       // if(this.appointmentList.appointments === undefined){
-      //   console.log('keyyyyy',this.appointmentList.appointments);
       // }
     })
 
@@ -184,12 +181,10 @@ export class DoctorpageComponent implements OnInit {
     obj.appointmentid = data._id;
     obj.confirmstatus = true;
     obj.bookingid = data.bookingid;
-    console.log('====>', obj)
     this.server.confirmappointment(obj).subscribe(res => {
       // this.confirmBookingList = res;
       // this.confirmBookingList.confirmlist = [];
       // this.confirmBookingList.confirmlist.push(this.confirmBookingList['data']);
-      // console.log('confirm status',this.confirmBookingList.confirmlist);
       this.getAppointmentList();
     })
   }

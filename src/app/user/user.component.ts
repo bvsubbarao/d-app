@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
   bookApp: any = {};
   doctorList: boolean = true;
   Slots: boolean;
+  message: string;
 
   constructor(private service: DoctorServiceService, private dialog: MatDialog, private title: Title) {
   }
@@ -28,7 +29,6 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.service.getSpecialistList().subscribe(res => {
       this.specialistList = res;
-      console.log(':::', this.specialistList);
       this.title.setTitle('Doctor Appointment - User Page');
     });
 
@@ -38,30 +38,42 @@ export class UserComponent implements OnInit {
   * collect the patient data
   * */
   onSubmitPatientForm(specialistId) {
+    this.requestObject.hospitals = [];
+    this.message = '';
     let specialistid: string = specialistId;
     this.service.getspecificselectedHospitals(specialistid).subscribe(res => {
-      this.requestObject.hospitals = res;
-      // console.log('ddjghdjg', res)
+      if (res['status'] === false) {
+        this.message = res['message'];
+      }
+      else {
+        this.requestObject.hospitals = res;
+      }
     })
   }
 
   search(specialistId, hospitalId) {
-    // console.log('+++++++', specialistId, hospitalId)
     this.requestObject.dates = [];
+    this.message = '';
     let obj: any = {};
     obj.hospitalid = hospitalId;
     obj.specialistid = specialistId;
+    this.doctorList = true;
+    this.Slots = false;
     if (obj.hospitalid !== undefined && obj.specialistid !== undefined) {
       this.service.getListOfDoctors(obj).subscribe(res => {
-        this.requestObject.doctorlist = [];
-        this.requestObject.doctorlist = res;
-        this.requestObject.doctorlist.forEach((data, i) => {
-          data.dob = this.service.getAge(this.requestObject.doctorlist[i].dob)
-        })
+        if (res['status'] === false) {
+          this.message = res['message'];
+        }
+        else {
+          this.requestObject.doctorlist = [];
+          this.requestObject.doctorlist = res;
+          this.requestObject.doctorlist.forEach((data, i) => {
+            data.dob = this.service.getAge(this.requestObject.doctorlist[i].dob)
+          })
+        }
         // for(let i = 0; i < this.requestObject.doctorlist.length; i++){
 
         // }
-        console.log('=======>', obj)
       })
     }
 
@@ -79,19 +91,15 @@ export class UserComponent implements OnInit {
     if (date < 10) {
       date = '0' + date;
     }
-    let currentdate = date + '-' + month + '-' + year;
-    console.log('======>', currentdate)
+    let currentdate = year + '-' + month + '-' + date;
     this.requestObject.docData = data;
-    console.log('doc id is')
     this.service.getDoctorAvailableTimes(data._id).subscribe(res => {
-      console.log('ioioioioio', res);
       this.slots.array = res;
       for (let i = 0; i < this.slots.array.length; i++) {
-        if (currentdate <= this.slots.array[i].date) {
-          this.slots.currentdateArray.push(this.slots.array[i]);
-        }
+        // if (currentdate <= this.slots.array[i].date) {
+        this.slots.currentdateArray.push(this.slots.array[i]);
+        // }
       }
-      console.log('avialble time slots are', this.slots.currentdateArray)
       this.slots.SelectedArray = this.slots.currentdateArray;
       // this.bookApp.
     })
@@ -100,22 +108,22 @@ export class UserComponent implements OnInit {
 
   }
   getLabel(event) {
-    this.slots.array.forEach((arraydata,index) => {
+    this.slots.array.forEach((arraydata, index) => {
       if (arraydata.date === event.tab.textLabel) {
         this.slots.SelectedArray = this.slots.array[index];
       }
     })
   }
   bookSlot(value, data, issue, date) {
-    console.log(this.slots.SelectedArray.availabletime)
+    let tempData = [...this.slots.SelectedArray.availabletime]
     this.slots.SelectedArray.availabletime.forEach((data => {
-      if (value._id === data._id && value.status === true) {
-        console.log(true)
-        data.status = false;
-      }
-      else {
-        console.log(true)
-        data.status = true;
+      if (data.status !== 'booked') {
+        if (value._id === data._id && value.status === 'available for booking') {
+          data.status = 'not available for booking';
+        }
+        else {
+          data.status = 'available for booking';
+        }
       }
     }));
 
@@ -127,5 +135,8 @@ export class UserComponent implements OnInit {
     let dialog = this.dialog.open(ApplyCoupnComponent, {
       data: obj1,
     });
+    dialog.afterClosed().subscribe(response => {
+      // this.slots.SelectedArray.availabletime = [...tempData]
+    })
   }
 }

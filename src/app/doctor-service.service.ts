@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DoctorServiceService {
 
-  baseUrl: string = "http://192.168.1.7:9000";
+  baseUrl: string = "http://192.168.1.14:9000";
   timeslots: any = [];
   constructor(private httpRef: HttpClient) { }
 
@@ -21,7 +21,6 @@ export class DoctorServiceService {
     return this.httpRef.post(this.baseUrl + '/api/users/create', data);
   }
   login(data) {
-    console.log(data)
     return this.httpRef.post(this.baseUrl + '/api/users/login', data);
   }
   getHospitals() {
@@ -134,16 +133,16 @@ export class DoctorServiceService {
     };
     return this.httpRef.get(this.baseUrl + '/api/appointments/getallappointments', httpOptions);
   }
-  confirmappointment(data){
+  confirmappointment(data) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token'),
       })
     };
-    return this.httpRef.post(this.baseUrl + '/api/appointments/updateappointment', data,httpOptions);
+    return this.httpRef.post(this.baseUrl + '/api/appointments/updateappointment', data, httpOptions);
   }
-  getAllappointments(){
+  getAllappointments() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

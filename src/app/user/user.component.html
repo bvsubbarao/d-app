@@ -27,38 +27,108 @@
       </div>
       <div class="col-lg-2 col-md-2 ip-fields">
         <!-- hospital data -->
-        <button mat-raised-button style="background-color:#607D8B;;color: white;height: 33px;" (click)="search(requestObject.specialistId, requestObject.hospitalList)">
+        <button mat-raised-button style="background-color:#607D8B;;color: white;height: 33px;"
+          (click)="search(requestObject.specialistId, requestObject.hospitalList)">
           Search </button></div>
 
     </div>
+
+    <p *ngIf="message" class="message"> {{message}} </p>
 
 
     <br>
 
   </div>
 
-  <div *ngIf = "doctorList">
+  <div *ngIf="doctorList">
     <div class="row">
       <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let doc of requestObject.doctorlist">
         <mat-card class="card-main">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 card-div-padding">
-              <div> Name : <span> {{doc.name}} </span> <span>({{doc.qualification}})</span></div>
-              <div> Age : <span> {{doc.dob}} </span></div>
-              <div> Specialist In : <span> {{doc.specialistid['name']}} </span></div>
-              <div> Organization Type : <span> {{doc.specialistid['organizationtype']}} </span></div>
-              <div> City : <span> {{doc.cityid['name']}} </span></div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> Name </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> <span> {{doc.name}} </span> <span>({{doc.qualification}})</span></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> Age </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> {{doc.dob}} </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> Specialist In </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> {{doc.specialistid['name']}} </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> Organization Type </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> {{doc.specialistid['organizationtype']}} </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> City </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> {{doc.cityid['name']}} </p>
+                </div>
+              </div>
+
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 card-div-padding">
-              <div> Fee : <span> {{doc.fee}} </span></div>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 head-div1">
+                  <p class="left-text nomargin"> Fee </p>
+                </div>
+                <div class="col-lg-1 col-md-1 head-div">
+                  :
+                </div>
+                <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                  <p class="right-text nomargin"> {{doc.fee}} </p>
+                </div>
+              </div>
               <div class="avail_btn"> <button mat-raised-button class="btn" (click)="getavailTimes(doc)">
                   Availability </button></div>
             </div>
             <div class="col-lg-12 card-div-bottom">
               <div style="display:flex;justify-content: space-between;">
-                <p class="card-footer">{{doc.workat.name}}</p>
+                <p class="card-footer left-text">{{doc.workat.name}}</p>
                 <!-- <p class="card-footer loc-icon" matTooltip= {{doc.workat.address}} matTooltipPosition = "below">local</p> -->
-                <img class="card-footer loc-icon" matTooltip={{doc.workat.address}} matTooltipPosition="below" src="assets/Icons/images.png">
+                <img class="card-footer loc-icon" matTooltip={{doc.workat.address}} matTooltipPosition="below"
+                  src="assets/Icons/images.png">
               </div>
             </div>
           </div>
@@ -68,11 +138,13 @@
     </div>
   </div>
 
-  <div *ngIf = "Slots">
+  <div *ngIf="Slots">
     <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngModel])="docObj.data" #tabGroup>
       <mat-tab *ngFor="let data of slots.currentdateArray;let i = index" label={{data.date}}>
         <div class="slot-maindiv">
-          <button *ngFor="let slot of data.availabletime;" class="slot-div" (click)="bookSlot(slot, doc, requestObject.issue, data.date)" [ngClass]="{'activediv':slot.status ===false,'inactivediv':slot.status ===true}">
+          <button *ngFor="let slot of data.availabletime;" class="slot-div"
+            (click)="bookSlot(slot, doc, requestObject.issue, data.date)" [disabled]="slot.status ==='booked'"
+            [ngClass]="{'inactivediv':slot.status ==='available for booking','activediv':slot.status ==='not available for booking','bookedactivediv':slot.status ==='booked'}">
             {{slot.timeslot}}
           </button>
         </div>

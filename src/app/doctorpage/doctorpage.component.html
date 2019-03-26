@@ -1,103 +1,107 @@
 <div class="container">
   <!-- <mat-card> -->
-  <button mat-raised-button (click)="available('applicant')" class="doc_page_btn" [ngClass]="{'doc_page_btn': selectObj.key === 'applicant'}">
+  <button mat-raised-button (click)="available('applicant')" class="doc_page_btn"
+    [ngClass]="{'doc_page_btn': selectObj.key === 'applicant'}">
     List of Applicants </button>
-  <button mat-raised-button style="margin-left:25px;" (click)="available('available')" class="doc_page_btn" [ngClass]="{'doc_page_btn': selectObj.key === 'available'}">
+  <button mat-raised-button style="margin-left:25px;" (click)="available('available')" class="doc_page_btn"
+    [ngClass]="{'doc_page_btn': selectObj.key === 'available'}">
     Availability </button>
 
   <div *ngIf="listOfApplicant">
     <mat-tab-group>
       <mat-tab label="Confirmed">
         <div class="row">
-          <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let appointments of appointmentList.confirmedList">
-            <mat-card class="card-main" *ngIf="appointments.confirmstatus === true">
-              <div style="padding:15px;">
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Patient Name </p>
+          <div *ngFor="let appointments of appointmentList.confirmedList">
+            <div class="doc_info" *ngIf="appointments.confirmstatus === true">
+              <mat-card class="card-main">
+                <div style="padding:15px;">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Patient Name </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-7 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.name}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Gender </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.gender}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-7 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.bookedby.name}} </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Gender </p>
-                  </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.bookedby.gender}} </p>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Age </p>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Age </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.dob}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.dob}} </p>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Health Issue </p>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Health Issue </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.issue}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.issue}} </p>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Booking Time & Date </p>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Booking Time & Date </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.time}} / {{appointments.date}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.time}} / {{appointments.date}} </p>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Mobile Number </p>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Mobile Number </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.mobile}} </p>
+                    </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.bookedby.mobile}} </p>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-lg-4 col-md-4 head-div">
-                    <p class="left-text"> Booking Id </p>
-                  </div>
-                  <div class="col-lg-1 col-md-1 head-div">
-                    :
-                  </div>
-                  <div class="col-lg-4 col-md-7 head-div margin-div">
-                    <p class="right-text"> {{appointments.bookingid}} </p>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Booking Id </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookingid}} </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- </div> -->
-              <!-- </div> -->
-            </mat-card>
+                <!-- </div> -->
+                <!-- </div> -->
+              </mat-card>
+            </div>
 
           </div>
           <p *ngIf="appointmentList.appConfirmCondition">{{appointmentList.appConfirmCondition}}</p>
@@ -106,26 +110,101 @@
       </mat-tab>
       <mat-tab label="To Be Confirm">
         <div class="row">
-          <div class="doc_info" style="width:50%;padding: 10px;" *ngFor="let appointments of appointmentList.confirmedList">
-            <mat-card class="card-main" *ngIf="appointments.confirmstatus === false">
-              <div class="row">
-                <div class="col-lg-8 col-md-8 card-div-padding">
-                  <div> <span>Patient Name :</span> <span> {{appointments.bookedby.name}} </span></div>
-                  <div> Gender : <span> {{appointments.bookedby.gender}} </span></div>
-                  <div> Age : <span> {{appointments.dob}} </span></div>
-                  <div> Health Issue : <span> {{appointments.issue}} </span></div>
-                  <div> Booking Time & Date : <span> {{appointments.time}} / {{appointments.date}} </span></div>
-                  <div> Mobile Number : <span> {{appointments.bookedby.mobile}} </span></div>
-                </div>
-                <div class="col-lg-12 card-bottom">
-                  <div style="float:right;">
-                    <button mat-raised-button style="background-color:#607D8B;color:white;" (click)="confirmAppointment(appointments)"
-                      [disabled]="appointments.confirmstatus" [ngClass]="appointments.confirmstatus ? 'activebtn' : 'inactivebtn'">
-                      Confirm </button>
+          <div *ngFor="let appointments of appointmentList.confirmedList">
+            <div class="doc_info" *ngIf="appointments.confirmstatus === false">
+                <mat-card class="card-main">
+              <div style="padding:15px;">
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Patient Name </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-7 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.name}} </p>
+                    </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Gender </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.gender}} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Age </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.dob}} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Health Issue </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-7 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.issue}} </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Booking Time & Date </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.time}} / {{appointments.date}} </p>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 head-div1">
+                      <p class="left-text"> Mobile Number </p>
+                    </div>
+                    <div class="col-lg-1 col-md-1 head-div">
+                      :
+                    </div>
+                    <div class="col-lg-4 col-md-7 head-div1 margin-div">
+                      <p class="right-text"> {{appointments.bookedby.mobile}} </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- <div class="col-lg-8 col-md-8 card-div-padding">
+                    <div> <span class="left-text">Patient Name :</span> <span class="right-text"> {{appointments.bookedby.name}} </span></div>
+                    <div> <span class="left-text">Gender : </span> <span class="right-text"> {{appointments.bookedby.gender}} </span></div>
+                    <div> <span class="left-text">Age : </span> <span class="right-text"> {{appointments.dob}} </span></div>
+                    <div> <span class="left-text">Health Issue : </span> <span class="right-text"> {{appointments.issue}} </span></div>
+                    <div> <span class="left-text">Booking Time & Date : </span> <span class="right-text"> {{appointments.time}} / {{appointments.date}} </span></div>
+                    <div> <span class="left-text">Mobile Number : </span> <span class="right-text"> {{appointments.bookedby.mobile}} </span></div>
+                  </div> -->
+                    <div class="col-lg-12 card-bottom">
+                      <div style="float:right;">
+                        <button mat-raised-button style="background-color:#607D8B;color:white;"
+                          (click)="confirmAppointment(appointments)" [disabled]="appointments.confirmstatus"
+                          [ngClass]="appointments.confirmstatus ? 'activebtn' : 'inactivebtn'">
+                          Confirm </button>
+                      </div>
+                    </div>
+                  </div>
               </div>
-            </mat-card>
+                </mat-card>
+            </div>
           </div>
           <p *ngIf="appointmentList.appSchCondition">{{appointmentList.appSchCondition}}</p>
 
@@ -139,7 +218,8 @@
     <mat-tab-group (selectedTabChange)="getLabel($event)" ([ngMoels])="docObj.data" #tabGroup>
       <mat-tab *ngFor="let data of array.dates" label={{data}}>
         <div class="slot-maindiv">
-          <button *ngFor="let slot of timeSlots" class="slot-div" (click)="bookSlot(slot)" [ngClass]="{'activediv':slot.status ===true,'inactivediv':slot.status ===false}">
+          <button *ngFor="let slot of timeSlots" class="slot-div" (click)="bookSlot(slot)" [disabled]="slot.status ==='booked'"
+            [ngClass]="{'activediv':slot.status ==='available for booking','inactivediv':slot.status ==='not available for booking','bookedactivediv':slot.status ==='booked'}">
             {{slot.timeslot}}
           </button>
         </div>
